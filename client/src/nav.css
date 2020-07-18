@@ -1,0 +1,17 @@
+.navBar{
+    list-style-type: none;
+    background-color: gray;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+.navBar li {
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
