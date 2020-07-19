@@ -1,32 +1,41 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
-class Leaderboard extends Component
-{
-    constructor(props)
-    {
+class Leaderboard extends Component {
+    constructor(props) {
         super(props);
         this.state = {
-            isLoaded:false,
-            error:null,
+            isLoaded: false,
+            error: null,
             items: []
         }
     }
 
-    pullLeaderboardData()
-    {
+    pullLeaderboardData() {
         fetch("/leaderboard")
-        .then(res => res.json())
-        .then(data => this.setState({isLoaded: true, items: data}))
+            .then(res => res.json())
+            .then(data => this.setState({ isLoaded: true, items: data }))
     }
 
-    componentDidMount()
-    {
+    componentDidMount() {
         this.pullLeaderboardData();
     }
 
-    render(){
-        return(
-            <h1>Leaderboard</h1>
+    render() {
+        const { isLoaded, error, items } = this.state;
+        return (
+            <div className="leaderboard">
+                <h1>Leaderboard</h1>
+                {isLoaded ? (
+                    < div >
+                        {items.map(item =>
+                            <li id={item.PlayerID}>{item.PlayerID}{item.Points}</li>
+                        )}
+                    </div>
+                )
+                    :
+                    (<h3>Loading...</h3>)
+                }
+            </div>
         );
     }
 }

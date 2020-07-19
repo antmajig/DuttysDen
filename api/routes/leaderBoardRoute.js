@@ -11,22 +11,69 @@ router.get('/leaderboard', async function (req, res, next) {
         database: 'DuttysDen'
     });
     connection.connect();
-    
-    const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 4"
-    let resultsFromSeason = "SELECT * FROM Results WHERE GameId IN ("
 
-    connection.query(gamesInSeason, function (error, gameIds) {
-        resultsFromSeason += "kk";
-        if (error) {
-            console.log("Error gettings games in season");
-        }
-        gameIds.map(gameId => {
-            resultsFromSeason += gameId.GameID + ',';
-            console.log(gameId.GameID);
+    const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 4"
+    let resultsFromSeason = "SELECT * FROM Result WHERE GameId IN ("
+    const playerQuery = "SELECT * FROM Player"
+    let gamePromise = await new Promise((res, rej) => {
+        connection.query(gamesInSeason, function (error, gameIds) {
+            if (error) {
+                console.log("Error gettings games in season");
+                rej(error);
+            }
+            const numberOfGames = gameIds.length;
+            gameIds.map((gameId, i) => {
+                resultsFromSeason += gameId.GameID;
+                if (i + 1 != numberOfGames) {
+                    resultsFromSeason += ","
+                }
+            });
+            resultsFromSeason += ")";
+            res(gameIds);
         });
-        resultsFromSeason += ")";
-        console.log(resultsFromSeason);
     });
+
+    let resultPromise = await new Promise((res, rej) => {
+        connection.query(resultsFromSeason, function (error, results) {
+            if (error) {
+                console.log("Error gettings results in season");
+                rej(error);
+            }
+            res(results);
+        });
+    });
+
+    let leaderboard = [];
+    resultPromise.map(result => {
+        var pExists = leaderboard.filter(p => (result.PlayerID === p.PlayerID));
+
+        if (pExists.length == 1) {
+            pExists[0].Points += result.Points;
+        }
+        else {
+            var entry = {
+                PlayerID: result.PlayerID,
+                Points: result.Points
+            }
+            leaderboard.push(entry);
+        }
+    });
+
+    let playerPromise = await new Promise((res, rej) => {
+        connection.query(playerQuery, function (error, players) {
+            if (error) {
+                console.log("Error getting players");
+                rej(error);
+            }
+            res(players);
+        });
+    });
+    leaderboard.map(leadEntry => {
+        var playerName = playerPromise.filter(p => (leadEntry.PlayerID === p.PlayerID));
+        leadEntry.PlayerID = playerName[0].PlayerName;
+    });
+    console.log(leaderboard);
+    res.send(leaderboard);
 });
 
 module.exports = router;

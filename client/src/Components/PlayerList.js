@@ -30,11 +30,13 @@ class PlayerList extends Component {
                 <h1>Players</h1>
                 {isLoaded ? (
                     < div >
-                        {items.map(item => <li>{item.PlayerName}</li>)}
+                        {items.map(item =>
+                            <li id={item.PlayerID}>{item.PlayerName}</li>
+                        )}
                     </div>
                 )
-                :
-                (<h3>Loading...</h3>)
+                    :
+                    (<h3>Loading...</h3>)
                 }
             </div>
         );
