@@ -2,9 +2,19 @@ import React, { Component } from 'react'
 
 
 class ResultRow extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props);
+        this.state= {
+            username: "",
+            points: 0,
+            cash: 0
+        }
     }
+
+    handleChange(event){
+
+    }
+
     render() {
         return (
             <form>
