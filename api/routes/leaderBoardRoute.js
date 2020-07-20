@@ -72,7 +72,6 @@ router.get('/leaderboard', async function (req, res, next) {
         var playerName = playerPromise.filter(p => (leadEntry.PlayerID === p.PlayerID));
         leadEntry.PlayerID = playerName[0].PlayerName;
     });
-    console.log(leaderboard);
     res.send(leaderboard);
 });
 
