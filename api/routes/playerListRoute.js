@@ -1,9 +1,9 @@
-var express = require('express')
-var router = express.Router();
-var mysql = require('mysql');
+let express = require('express')
+let router = express.Router();
+let mysql = require('mysql');
 
 router.get('/playerlist', function (req, res, next) {
-    var connection = mysql.createConnection({
+    let connection = mysql.createConnection({
         host: 'localhost',
         user: 'astro',
         password: 'password',
@@ -11,7 +11,7 @@ router.get('/playerlist', function (req, res, next) {
     });
     connection.connect();
 
-    var query = "SELECT * FROM Player";
+    let query = "SELECT * FROM Player";
     connection.query(query, function (err, rows) {
         if (err) {
             console.log("error thrown")
