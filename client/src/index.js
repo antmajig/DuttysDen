@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import NavBar from './Components/NavBar'
-import PlayerList from './Components/PlayerList'
-import CreatePlayerForm from './Components/CreatePlayerForm'
-import ResultsInputForm from './Components/ResultsInputForm'
-import Leaderboard from './Components/Leaderboard'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import NavBar from "./Components/NavBar";
+import PlayerList from "./Components/PlayerList";
+import CreatePlayerForm from "./Components/CreatePlayerForm";
+import ResultsInputForm from "./Components/ResultsInputForm";
+import Leaderboard from "./Components/Leaderboard";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,5 +19,5 @@ ReactDOM.render(
       <Route path="/admin/add-game" exact component={ResultsInputForm} />
     </Router>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
