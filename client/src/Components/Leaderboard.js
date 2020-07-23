@@ -30,14 +30,18 @@ class Leaderboard extends Component {
             <Table striped bordered hover size="sm" variant="dark">
               <thead>
                 <tr>
+                  <th>Rank</th>
                   <th>Username</th>
+                  <th>Games Played</th>
                   <th>Points</th>
                 </tr>
               </thead>
               <tbody>
-                {items.map((item) => (
+                {items.map((item, index) => (
                   <tr>
+                    <td>{index + 1}</td>
                     <td>{item.PlayerID}</td>
+                    <td>{item.GamesPlayed}</td>
                     <td>{item.Points}</td>
                   </tr>
                 ))}
