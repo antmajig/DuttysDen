@@ -92,7 +92,7 @@ class ResultInputForm extends Component {
     };
     this.setNumberOfPlayers = this.setNumberOfPlayers.bind(this);
     this.setRowData = this.setRowData.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.sendForm = this.sendForm.bind(this);
   }
 
   setNumberOfPlayers(numOfPlayers) {
@@ -117,13 +117,21 @@ class ResultInputForm extends Component {
     return rows;
   }
 
-  onSubmit() {
+  sendForm() {
     //pull all row data
     //pull game name
     //pull counts towards points
     //calculate the points
     //check the validity of the input data
     //send payload to express
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ title: "test" }),
+    };
+    fetch("/add-game", requestOptions)
+      .then((response) => response.json)
+      .then((data) => console.log(data));
   }
 
   componentDidMount() {
@@ -146,7 +154,7 @@ class ResultInputForm extends Component {
             <label>Game Name:</label>
             <input type="text" />
             {this.getRows()}
-            <input type="submit" value="submit game" onSubmit={this.onSubmit} />
+            <input type="submit" value="submit game" onClick={this.sendForm} />
           </div>
         ) : (
           <div>

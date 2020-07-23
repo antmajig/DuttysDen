@@ -1,6 +1,6 @@
-var express = require("express");
-var router = express.Router();
-var mysql = require("mysql");
+let express = require("express");
+let router = express.Router();
+let mysql = require("mysql");
 const { json } = require("express");
 
 router.get("/leaderboard", async function (req, res, next) {
@@ -45,7 +45,7 @@ router.get("/leaderboard", async function (req, res, next) {
 
   let leaderboard = [];
   resultPromise.map((result) => {
-    var pExists = leaderboard.filter((p) => result.PlayerID === p.PlayerID);
+    let pExists = leaderboard.filter((p) => result.PlayerID === p.PlayerID);
 
     if (pExists.length == 1) {
       pExists[0].Points += result.Points;
@@ -70,7 +70,7 @@ router.get("/leaderboard", async function (req, res, next) {
     });
   });
   leaderboard.map((leadEntry) => {
-    var playerName = playerPromise.filter(
+    let playerName = playerPromise.filter(
       (p) => leadEntry.PlayerID === p.PlayerID
     );
     leadEntry.PlayerID = playerName[0].PlayerName;
