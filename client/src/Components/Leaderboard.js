@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
-
+import "../leaderboard.css";
 class Leaderboard extends Component {
   constructor(props) {
     super(props);
