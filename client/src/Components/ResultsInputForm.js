@@ -1,61 +1,5 @@
 import React, { Component } from "react";
-
-class ResultRow extends Component {
-  constructor(props) {
-    super(props);
-    let username = "";
-    let points = 0;
-    let cash = 0;
-    this.usernameChange = this.usernameChange.bind(this);
-    this.pointsChange = this.pointsChange.bind(this);
-    this.cashChange = this.cashChange.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange() {
-    this.props.setRowData({
-      rowId: this.props.rowId,
-      username: this.username,
-      points: this.points,
-      cash: this.cash,
-    });
-  }
-
-  usernameChange(event) {
-    this.username = event.target.value;
-    this.handleChange();
-  }
-
-  pointsChange(event) {
-    this.points = event.target.value;
-    this.handleChange();
-  }
-
-  cashChange(event) {
-    this.cash = event.target.value;
-    this.handleChange();
-  }
-  //use a datalist for the players
-  render() {
-    const players = this.props.players;
-    console.log(players);
-    return (
-      <form>
-        <label>Username</label>
-        <input type="text" list="data" onChange={this.usernameChange} />
-        <datalist id="data">
-          {players.map((item) => (
-            <option key={item.playerID} value={item.PlayerName} />
-          ))}
-        </datalist>
-        <label>Points</label>
-        <input type="number" onChange={this.pointsChange} />
-        <label>Cash</label>
-        <input type="number" onChange={this.cashChange} />
-      </form>
-    );
-  }
-}
+import ResultRow from "./ResultRow";
 
 class NumberOfPlayersInput extends Component {
   constructor(props) {
@@ -89,10 +33,12 @@ class ResultInputForm extends Component {
       rowData: [],
       players: [],
       loadedPlayers: false,
+      gameType: "main",
     };
     this.setNumberOfPlayers = this.setNumberOfPlayers.bind(this);
     this.setRowData = this.setRowData.bind(this);
     this.sendForm = this.sendForm.bind(this);
+    this.gameTypeChange = this.gameTypeChange.bind(this);
   }
 
   setNumberOfPlayers(numOfPlayers) {
@@ -111,11 +57,21 @@ class ResultInputForm extends Component {
           rowId={i}
           setRowData={this.setRowData}
           players={this.state.players}
+          gameType={this.state.gameType}
         />
       );
     }
     return rows;
   }
+
+  gameTypeChange(event) {
+    this.setState({
+      gameType: event.target.value,
+    });
+    console.log(event.target.value);
+  }
+
+  parseGameInput() {}
 
   sendForm() {
     //pull all row data
@@ -153,8 +109,22 @@ class ResultInputForm extends Component {
             />
             <label>Game Name:</label>
             <input type="text" />
+            <label>Game Type:</label>
+            <select name="Game Type" onChange={this.gameTypeChange}>
+              <option value="main">Main</option>
+              <option value="turbo">Turbo</option>
+              <option value="pko">PKO</option>
+            </select>
+            <label>Points:</label>
+            <input type="checkbox" />
             {this.getRows()}
-            <input type="submit" value="submit game" onClick={this.sendForm} />
+            <div>
+              <input
+                type="submit"
+                value="submit game"
+                onClick={this.sendForm}
+              />
+            </div>
           </div>
         ) : (
           <div>
