@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import "../index.css";
 
 class CreatePlayerForm extends Component {
@@ -14,15 +15,24 @@ class CreatePlayerForm extends Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
-  submitForm() {
+  submitForm(event) {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.state),
     };
+
     fetch("/add-player", requestOptions)
-      .then((response) => response.json)
-      .then((data) => console.log(data));
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
+        if (result.outcome === true) {
+          alert("player created");
+        } else {
+          alert("Failed to create player");
+        }
+      });
+    event.preventDefault();
   }
 
   handleInputChange(event) {
@@ -63,12 +73,9 @@ class CreatePlayerForm extends Component {
             />
           </Form.Group>
           <Form.Group>
-            <Form.Control
-              type="button"
-              name="submit"
-              value="create player"
-              onClick={this.submitForm}
-            />
+            <Button variant="primary" type="button" onClick={this.submitForm}>
+              Submit
+            </Button>
           </Form.Group>
         </Form>
       </div>
