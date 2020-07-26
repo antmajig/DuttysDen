@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import CreateNewSeason from "./Components/CreateNewSeason";
 import NavBar from "./Components/NavBar";
 import PlayerList from "./Components/PlayerList";
 import CreatePlayerForm from "./Components/CreatePlayerForm";
@@ -13,6 +14,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <NavBar />
+      <Route path="/admin/add-season" exact component={CreateNewSeason} />
       <Route path="/playerlist" exact component={PlayerList} />
       <Route path="/leaderboard" exact component={Leaderboard} />
       <Route path="/admin/add-player" exact component={CreatePlayerForm} />
