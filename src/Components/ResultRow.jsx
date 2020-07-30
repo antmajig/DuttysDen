@@ -77,10 +77,6 @@ class ResultRow extends Component {
             </datalist>
           </Col>
           <Col xs="auto">
-            <Form.Label>Points</Form.Label>
-            <Form.Control type="number" onChange={this.pointsChange} />
-          </Col>
-          <Col xs="auto">
             <Form.Label>Cash</Form.Label>
             <Form.Control type="number" onChange={this.cashChange} />
           </Col>
