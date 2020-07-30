@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ResultRow from "./ResultRow";
-
+import Form from "react-bootstrap/Form";
 class NumberOfPlayersInput extends Component {
   constructor(props) {
     super(props);
@@ -107,24 +107,30 @@ class ResultInputForm extends Component {
             <NumberOfPlayersInput
               numOfPlayersChange={this.setNumberOfPlayers}
             />
-            <label>Game Name:</label>
-            <input type="text" />
-            <label>Game Type:</label>
-            <select name="Game Type" onChange={this.gameTypeChange}>
-              <option value="main">Main</option>
-              <option value="turbo">Turbo</option>
-              <option value="pko">PKO</option>
-            </select>
-            <label>Points:</label>
-            <input type="checkbox" />
-            {this.getRows()}
-            <div>
-              <input
-                type="submit"
-                value="submit game"
-                onClick={this.sendForm}
-              />
-            </div>
+            <Form>
+              <Form.Group>
+                <label>Game Name:</label>
+                <input type="text" />
+              </Form.Group>
+              <label>Game Type:</label>
+              <select name="Game Type" onChange={this.gameTypeChange}>
+                <option value="main">Main</option>
+                <option value="turbo">Turbo</option>
+                <option value="pko">PKO</option>
+              </select>
+              <label>Points:</label>
+              <input type="checkbox" />
+              <label>Season</label>
+              <input type="number" />
+              {this.getRows()}
+              <div>
+                <input
+                  type="submit"
+                  value="submit game"
+                  onClick={this.sendForm}
+                />
+              </div>
+            </Form>
           </div>
         ) : (
           <div>
