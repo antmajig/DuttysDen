@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 class ResultRow extends Component {
   constructor(props) {
     super(props);
@@ -47,10 +48,12 @@ class ResultRow extends Component {
   renderBountyField() {
     if (this.props.gameType === "pko") {
       return (
-        <>
-          <label>Bounty Cash</label>
-          <input type="number" onChange={this.bountyChange} />
-        </>
+        <div>
+          <Col>
+            <Form.Label>Bounty Cash</Form.Label>
+            <Form.Control type="number" onChange={this.bountyChange} />
+          </Col>
+        </div>
       );
     }
   }
@@ -58,20 +61,32 @@ class ResultRow extends Component {
     const players = this.props.players;
     console.log(players);
     return (
-      <form>
-        <label>Username</label>
-        <input type="text" list="data" onChange={this.usernameChange} />
-        <datalist id="data">
-          {players.map((item) => (
-            <option key={item.playerID} value={item.PlayerName} />
-          ))}
-        </datalist>
-        <label>Points</label>
-        <input type="number" onChange={this.pointsChange} />
-        <label>Cash</label>
-        <input type="number" onChange={this.cashChange} />
-        {this.renderBountyField()}
-      </form>
+      <Form.Group>
+        <Form.Row>
+          <Col>
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              type="text"
+              list="data"
+              onChange={this.usernameChange}
+            />
+            <datalist id="data">
+              {players.map((item) => (
+                <option key={item.playerID} value={item.PlayerName} />
+              ))}
+            </datalist>
+          </Col>
+          <Col xs="auto">
+            <Form.Label>Points</Form.Label>
+            <Form.Control type="number" onChange={this.pointsChange} />
+          </Col>
+          <Col xs="auto">
+            <Form.Label>Cash</Form.Label>
+            <Form.Control type="number" onChange={this.cashChange} />
+          </Col>
+          {this.renderBountyField()}
+        </Form.Row>
+      </Form.Group>
     );
   }
 }

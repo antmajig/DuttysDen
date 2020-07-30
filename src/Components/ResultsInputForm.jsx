@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ResultRow from "./ResultRow";
 import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 class NumberOfPlayersInput extends Component {
   constructor(props) {
     super(props);
@@ -13,10 +14,12 @@ class NumberOfPlayersInput extends Component {
 
   render() {
     return (
-      <label>
-        Number of players:
-        <input type="number" onChange={this.handleChange} />
-      </label>
+      <div>
+        <Form.Group>
+          <Form.Label>Number of players</Form.Label>
+          <Form.Control type="number" onChange={this.handleChange} />
+        </Form.Group>
+      </div>
     );
   }
 }
@@ -104,32 +107,44 @@ class ResultInputForm extends Component {
       <div>
         {loadedPlayers ? (
           <div>
-            <NumberOfPlayersInput
-              numOfPlayersChange={this.setNumberOfPlayers}
-            />
             <Form>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Game Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="Game Name"
+                    onChange={this.handleInputChange}
+                  />
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label>Game Type</Form.Label>
+                  <Form.Control
+                    name="Game Type"
+                    as="select"
+                    onChange={this.gameTypeChange}
+                  >
+                    <option value="main">Main</option>
+                    <option value="turbo">Turbo</option>
+                    <option value="pko">PKO</option>
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
               <Form.Group>
-                <label>Game Name:</label>
-                <input type="text" />
+                <Form.Label>Points</Form.Label>
+                <Form.Control type="checkbox" />
               </Form.Group>
-              <label>Game Type:</label>
-              <select name="Game Type" onChange={this.gameTypeChange}>
-                <option value="main">Main</option>
-                <option value="turbo">Turbo</option>
-                <option value="pko">PKO</option>
-              </select>
-              <label>Points:</label>
-              <input type="checkbox" />
-              <label>Season</label>
-              <input type="number" />
+              <Form.Group>
+                <Form.Label>Season</Form.Label>
+                <Form.Control type="number" />
+              </Form.Group>
+              <NumberOfPlayersInput
+                numOfPlayersChange={this.setNumberOfPlayers}
+              />
               {this.getRows()}
-              <div>
-                <input
-                  type="submit"
-                  value="submit game"
-                  onClick={this.sendForm}
-                />
-              </div>
+              <Form.Group>
+                <Form.Control type="submit" onClick={this.sendForm} />
+              </Form.Group>
             </Form>
           </div>
         ) : (
