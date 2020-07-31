@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ResultRow from "./ResultRow";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
-
+import "../customForm.css";
 //on page load, pull all the usernames so that we can fill our rows
 //do form validation (no 2 usernames of the same value)
 //check to see if the sql query executed correctly.
@@ -82,16 +82,16 @@ class ResultInputForm extends Component {
     if (!foundSeason) {
       return "Invalid season input";
     }
+
+    return "";
   }
 
   sendForm() {
-    //pull all row data
-    //pull game name
-    //pull counts towards points
-    //calculate the points
-    //check the validity of the input data
-    //send payload to express
-    console.log(this.parseGameInput());
+    const warningString = this.parseGameInput();
+    if (warningString != "") {
+      alert(warningString);
+      return;
+    }
 
     const requestOptions = {
       method: "POST",
@@ -122,7 +122,7 @@ class ResultInputForm extends Component {
     return (
       <div>
         {loaded ? (
-          <div>
+          <div className="custom-form">
             <Form>
               <Form.Row>
                 <Form.Group as={Col}>
