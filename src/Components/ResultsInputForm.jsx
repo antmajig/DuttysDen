@@ -117,7 +117,7 @@ class ResultInputForm extends Component {
                     onChange={this.handleInputChange}
                   />
                 </Form.Group>
-                <Form.Group as={Col}>
+                <Form.Group as={Col} xs="auto">
                   <Form.Label>Game Type</Form.Label>
                   <Form.Control
                     name="Game Type"
@@ -129,11 +129,11 @@ class ResultInputForm extends Component {
                     <option value="pko">PKO</option>
                   </Form.Control>
                 </Form.Group>
+                <Form.Group as={Col} xs="auto">
+                  <Form.Label>Points</Form.Label>
+                  <Form.Control type="checkbox" />
+                </Form.Group>
               </Form.Row>
-              <Form.Group>
-                <Form.Label>Points</Form.Label>
-                <Form.Control type="checkbox" />
-              </Form.Group>
               <Form.Group>
                 <Form.Label>Season</Form.Label>
                 <Form.Control type="number" />
@@ -143,7 +143,7 @@ class ResultInputForm extends Component {
               />
               {this.getRows()}
               <Form.Group>
-                <Form.Control type="submit" onClick={this.sendForm} />
+                <Form.Control type="button" onClick={this.sendForm} />
               </Form.Group>
             </Form>
           </div>
