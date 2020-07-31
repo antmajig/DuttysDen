@@ -9,7 +9,7 @@ function NavBar() {
         <Link to="/playerlist">
           <li className="nav-link">Players</li>
         </Link>
-        <Link to="leaderboard">
+        <Link to="/leaderboard">
           <li className="nav-link">Leaderboard</li>
         </Link>
       </nav>
