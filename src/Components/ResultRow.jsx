@@ -44,7 +44,6 @@ class ResultRow extends Component {
     this.bountyCash = event.target.value;
     this.handleChange();
   }
-  //use a datalist for the players
   renderBountyField() {
     if (this.props.gameType === "pko") {
       return (
@@ -59,30 +58,32 @@ class ResultRow extends Component {
   }
   render() {
     const players = this.props.players;
-    console.log(players);
+    const rowId = this.props.rowId;
     return (
-      <Form.Group>
-        <Form.Row>
-          <Col>
-            <Form.Label>Username</Form.Label>
-            <Form.Control
-              type="text"
-              list="data"
-              onChange={this.usernameChange}
-            />
-            <datalist id="data">
-              {players.map((item) => (
-                <option key={item.playerID} value={item.PlayerName} />
-              ))}
-            </datalist>
-          </Col>
-          <Col xs="auto">
-            <Form.Label>Cash</Form.Label>
-            <Form.Control type="number" onChange={this.cashChange} />
-          </Col>
-          {this.renderBountyField()}
-        </Form.Row>
-      </Form.Group>
+      <div key={rowId}>
+        <Form.Group>
+          <Form.Row>
+            <Col>
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                list="data"
+                onChange={this.usernameChange}
+              />
+              <datalist id="data">
+                {players.map((item) => (
+                  <option key={item.PlayerID} value={item.PlayerName} />
+                ))}
+              </datalist>
+            </Col>
+            <Col xs="auto">
+              <Form.Label>Cash</Form.Label>
+              <Form.Control type="number" onChange={this.cashChange} />
+            </Col>
+            {this.renderBountyField()}
+          </Form.Row>
+        </Form.Group>
+      </div>
     );
   }
 }
