@@ -3,9 +3,24 @@ let router = express.Router();
 let mysql = require("mysql");
 const { json } = require("express");
 
-function calculatePoints(results) {
+function specialCases(results) {
   const numberOfPlayers = results.length;
-  //special cases here
+  if (numberOfPlayers === 5) {
+    results[0].points = 3;
+    return true;
+  }
+  if (numberOfPlayers === 4) {
+    results[0].points = 2;
+    return true;
+  }
+  return false;
+}
+
+function calculatePoints(results) {
+  if (specialCases(results)) {
+    return;
+  }
+  const numberOfPlayers = results.length;
   const p = Math.round(0.34 * numberOfPlayers);
   let divideConst = 0;
   for (i = 0; i < p; i++) {
