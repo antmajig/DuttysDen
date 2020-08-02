@@ -44,9 +44,59 @@ function calculatePoints(results) {
   }
 }
 
-router.post("/add-game", function (req, res) {
-  console.log(req.body.title);
-  console.log("POST SUCCESS");
+router.post("/add-game", async function (req, res) {
+  const connection = mysql.createConnection({
+    host: "localhost",
+    user: "astro",
+    password: "password",
+    database: "DuttysDen",
+  });
+  connection.connect();
+
+  const insertGameQuery =
+    "INSERT INTO Game (SeasonID, GameName, GameType, Date) VALUES (?,?,?,?)";
+  const gameValues = [
+    req.body.season,
+    req.body.gameName,
+    req.body.gameType,
+    req.body.gameDate,
+  ];
+
+  let gamePromise = await new Promise((result, rejection) => {
+    connection.query(insertGameQuery, gameValues, function (
+      error,
+      rows,
+      fields
+    ) {
+      if (error) {
+        rejection(error);
+      }
+      result(rows.insertId);
+    });
+  }).catch((error) => {
+    res.send({
+      outcome: false,
+    });
+  });
+
+  //need to get the gameID
+  let resultPromise = await new Promise((result, rejection) => {
+    connection.query(
+      "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES (?,?,?,?,?,?)",
+      [1, gamePromise, req.body.gameType, req.body.gameDate],
+      function (error, rows, fields) {
+        if (error) {
+          rejection(error);
+        }
+        result(rows.insertId);
+      }
+    );
+  }).catch((error) => {
+    res.send({
+      outcome: false,
+    });
+  });
+  res.send(gamePromise);
 });
 
 module.exports = router;
