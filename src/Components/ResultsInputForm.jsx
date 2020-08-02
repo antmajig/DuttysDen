@@ -16,10 +16,11 @@ class ResultInputForm extends Component {
       players: [],
       seasons: [],
       loaded: false,
-      gameType: "main",
+      gameType: "Main",
       gameName: "",
       points: false,
       season: 0,
+      gameDate: "",
     };
     this.setNumberOfPlayers = this.setNumberOfPlayers.bind(this);
     this.setRowData = this.setRowData.bind(this);
@@ -96,7 +97,7 @@ class ResultInputForm extends Component {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: "test" }),
+      body: JSON.stringify(this.state),
     };
     fetch("/add-game", requestOptions)
       .then((response) => response.json)
@@ -116,7 +117,7 @@ class ResultInputForm extends Component {
         this.setState({ seasons: data, loaded: true });
       });
   }
-
+  //game date
   render() {
     const loaded = this.state.loaded;
     return (
@@ -136,13 +137,13 @@ class ResultInputForm extends Component {
                 <Form.Group as={Col} xs="auto">
                   <Form.Label>Game Type</Form.Label>
                   <Form.Control
-                    name="Game Type"
+                    name="gameType"
                     as="select"
                     onChange={this.handleChange}
                   >
-                    <option value="main">Main</option>
-                    <option value="turbo">Turbo</option>
-                    <option value="pko">PKO</option>
+                    <option value="Main">Main</option>
+                    <option value="Turbo">Turbo</option>
+                    <option value="PKO">PKO</option>
                   </Form.Control>
                 </Form.Group>
                 <Form.Group as={Col} xs="auto">
@@ -163,6 +164,14 @@ class ResultInputForm extends Component {
                 />
               </Form.Group>
               <Form.Group>
+                <Form.Label>Date</Form.Label>
+                <Form.Control
+                  name="gameDate"
+                  type="date"
+                  onChange={this.handleChange}
+                />
+              </Form.Group>
+              <Form.Group>
                 <Form.Label>Number of players</Form.Label>
                 <Form.Control
                   type="number"
@@ -170,6 +179,7 @@ class ResultInputForm extends Component {
                   onChange={this.handleChange}
                 />
               </Form.Group>
+              <hr />
               {this.getRows()}
               <Form.Group>
                 <Form.Control

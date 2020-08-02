@@ -49,8 +49,12 @@ class ResultRow extends Component {
       return (
         <div>
           <Col>
-            <Form.Label>Bounty Cash</Form.Label>
-            <Form.Control type="number" onChange={this.bountyChange} />
+            <Form.Label size="sm">Bounty Cash</Form.Label>
+            <Form.Control
+              size="sm"
+              type="number"
+              onChange={this.bountyChange}
+            />
           </Col>
         </div>
       );
@@ -64,10 +68,11 @@ class ResultRow extends Component {
         <Form.Group>
           <Form.Row>
             <Col>
-              <Form.Label>Username</Form.Label>
+              <Form.Label size="sm">Username</Form.Label>
               <Form.Control
                 type="text"
                 list="data"
+                size="sm"
                 onChange={this.usernameChange}
               />
               <datalist id="data">
@@ -77,8 +82,12 @@ class ResultRow extends Component {
               </datalist>
             </Col>
             <Col xs="auto">
-              <Form.Label>Cash</Form.Label>
-              <Form.Control type="number" onChange={this.cashChange} />
+              <Form.Label size="sm">Cash</Form.Label>
+              <Form.Control
+                size="sm"
+                type="number"
+                onChange={this.cashChange}
+              />
             </Col>
             {this.renderBountyField()}
           </Form.Row>
