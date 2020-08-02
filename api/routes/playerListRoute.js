@@ -1,14 +1,10 @@
 let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
+let config = require("../config/config.js");
 
 router.get("/playerlist", function (req, res, next) {
-  let connection = mysql.createConnection({
-    host: "localhost",
-    user: "astro",
-    password: "password",
-    database: "DuttysDen",
-  });
+  let connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
   let query = "SELECT * FROM Player";

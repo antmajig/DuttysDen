@@ -1,6 +1,7 @@
 let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
+let config = require("../config/config.js");
 const { json } = require("express");
 
 function specialCases(results) {
@@ -45,12 +46,7 @@ function calculatePoints(results) {
 }
 
 router.post("/add-game", async function (req, res) {
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "astro",
-    password: "password",
-    database: "DuttysDen",
-  });
+  const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
   const insertGameQuery =

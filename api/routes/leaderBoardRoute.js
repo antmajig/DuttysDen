@@ -1,15 +1,11 @@
 let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
+let config = require("../config/config.js");
 const { json } = require("express");
 
 router.get("/leaderboard", async function (req, res, next) {
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "astro",
-    password: "password",
-    database: "DuttysDen",
-  });
+  const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
   const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 4";

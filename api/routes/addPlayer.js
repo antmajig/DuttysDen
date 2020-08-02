@@ -1,14 +1,10 @@
 let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
+let config = require("../config/config.js");
 
 router.post("/add-player", async function (req, res) {
-  const connection = mysql.createConnection({
-    host: "localhost",
-    user: "astro",
-    password: "password",
-    database: "DuttysDen",
-  });
+  const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
   let playerPromise = await new Promise((result, rejection) => {
@@ -18,6 +14,7 @@ router.post("/add-player", async function (req, res) {
       function (error) {
         if (error) {
           rejection(error);
+          console.log(error);
         }
         result("success");
       }
