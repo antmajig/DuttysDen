@@ -5,33 +5,27 @@ class ResultRow extends Component {
   constructor(props) {
     super(props);
     let username = "";
-    let points = 0;
     let cash = 0;
     let bountyCash = 0;
     this.usernameChange = this.usernameChange.bind(this);
-    this.pointsChange = this.pointsChange.bind(this);
     this.cashChange = this.cashChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.renderBountyField = this.renderBountyField.bind(this);
+    this.bountyChange = this.bountyChange.bind(this);
   }
 
   handleChange() {
     this.props.setRowData({
       rowId: this.props.rowId,
       username: this.username,
-      points: this.points,
-      cash: this.cash,
-      bountyCash: this.bountyCash,
+      points: 0,
+      cash: Number(this.cash),
+      bountyCash: Number(this.bountyCash),
     });
   }
 
   usernameChange(event) {
     this.username = event.target.value;
-    this.handleChange();
-  }
-
-  pointsChange(event) {
-    this.points = event.target.value;
     this.handleChange();
   }
 
@@ -45,7 +39,7 @@ class ResultRow extends Component {
     this.handleChange();
   }
   renderBountyField() {
-    if (this.props.gameType === "pko") {
+    if (this.props.gameType === "PKO") {
       return (
         <div>
           <Col>

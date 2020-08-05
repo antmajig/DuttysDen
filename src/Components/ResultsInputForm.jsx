@@ -66,12 +66,13 @@ class ResultInputForm extends Component {
     const numberOfPlayers = this.state.rowData.length;
     for (let i = 0; i < numberOfPlayers; i++) {
       let username = this.state.rowData[i].username;
-      console.log(this.state.players);
-      let found =
-        this.state.players.filter((player) => player.PlayerName === username)
-          .length > 0;
-
-      if (!found) {
+      let findResult = this.state.players.filter(
+        (player) => player.PlayerName === username
+      );
+      const found = findResult.length > 0;
+      if (found) {
+        this.state.rowData[i].PlayerID = findResult[0].PlayerID;
+      } else {
         return "Invalid username input";
       }
     }
@@ -93,7 +94,7 @@ class ResultInputForm extends Component {
       alert(warningString);
       return;
     }
-
+    console.log(this.state);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

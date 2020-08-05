@@ -18,13 +18,7 @@ router.get("/playerlist", function (req, res, next) {
 });
 
 router.get("/season", function (req, res, next) {
-  let connection = mysql.createConnection({
-    host: "localhost",
-    user: "astro",
-    password: "password",
-    database: "DuttysDen",
-  });
-  connection.connect();
+  let connection = mysql.createConnection(config.databaseOptions);
   let query = "SELECT * FROM Season";
   connection.query(query, function (err, rows) {
     if (err) {

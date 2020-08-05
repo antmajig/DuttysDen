@@ -2,7 +2,6 @@ let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
 let config = require("../config/config.js");
-const { json } = require("express");
 
 function specialCases(results) {
   const numberOfPlayers = results.length;
@@ -14,6 +13,10 @@ function specialCases(results) {
     results[0].points = 2;
     return true;
   }
+  if (numberOfPlayers < 4) {
+    results[0].points = 100000;
+    return true;
+  }
   return false;
 }
 
@@ -22,6 +25,7 @@ function calculatePoints(results) {
     return;
   }
   const numberOfPlayers = results.length;
+  console.log("LEGHT" + numberOfPlayers);
   const p = Math.round(0.34 * numberOfPlayers);
   let divideConst = 0;
   for (i = 0; i < p; i++) {
@@ -70,29 +74,38 @@ router.post("/add-game", async function (req, res) {
       result(rows.insertId);
     });
   }).catch((error) => {
-    res.send({
-      outcome: false,
-    });
+    let fail = true;
   });
 
-  //need to get the gameID
+  if (req.body.points) {
+    calculatePoints(req.body.rowData);
+  }
+  const insertResultQuery =
+    "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES (?,?,?,?,?,?)";
+  const resultValues = [
+    req.body.rowData[0].PlayerID,
+    gamePromise,
+    0,
+    req.body.rowData[0].points,
+    req.body.rowData[0].cash,
+    req.body.rowData[0].bountyCash,
+  ];
   let resultPromise = await new Promise((result, rejection) => {
-    connection.query(
-      "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES (?,?,?,?,?,?)",
-      [1, gamePromise, req.body.gameType, req.body.gameDate],
-      function (error, rows, fields) {
-        if (error) {
-          rejection(error);
-        }
-        result(rows.insertId);
+    connection.query(insertResultQuery, resultValues, function (
+      error,
+      rows,
+      fields
+    ) {
+      if (error) {
+        rejection(error);
       }
-    );
-  }).catch((error) => {
-    res.send({
-      outcome: false,
+      result("done");
     });
+  }).catch((error) => {
+    let fail = true;
   });
-  res.send(gamePromise);
+
+  res.send(true);
 });
 
 module.exports = router;
