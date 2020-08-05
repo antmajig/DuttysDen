@@ -7,7 +7,7 @@ import PlayerList from "./Components/PlayerList.jsx";
 import CreatePlayerForm from "./Components/CreatePlayerForm.jsx";
 import ResultsInputForm from "./Components/ResultsInputForm.jsx";
 import Leaderboard from "./Components/Leaderboard.jsx";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(

@@ -97,7 +97,7 @@ class ResultInputForm extends Component {
       event.stopPropagation();
     }
     const warningString = this.parseGameInput();
-    if (warningString != "") {
+    if (warningString !== "") {
       alert(warningString);
       return;
     }
