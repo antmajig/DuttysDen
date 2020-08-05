@@ -12,6 +12,7 @@ class ResultRow extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.renderBountyField = this.renderBountyField.bind(this);
     this.bountyChange = this.bountyChange.bind(this);
+    this.renderLabel = this.renderLabel.bind(this);
   }
 
   handleChange() {
@@ -43,7 +44,7 @@ class ResultRow extends Component {
       return (
         <div>
           <Col>
-            <Form.Label size="sm">Bounty Cash</Form.Label>
+            {this.renderLabel("bounty")}
             <Form.Control
               size="sm"
               type="number"
@@ -55,6 +56,24 @@ class ResultRow extends Component {
       );
     }
   }
+
+  renderLabel(label) {
+    if (this.props.rowId == 0) {
+      switch (label) {
+        case "username":
+          return <Form.Label size="sm">Username</Form.Label>;
+          break;
+        case "cash":
+          return <Form.Label size="sm">Cash</Form.Label>;
+          break;
+        case "bounty":
+          return <Form.Label size="sm">Bounty Cash</Form.Label>;
+          break;
+      }
+    }
+    return;
+  }
+
   render() {
     const players = this.props.players;
     const rowId = this.props.rowId;
@@ -63,7 +82,7 @@ class ResultRow extends Component {
         <Form.Group>
           <Form.Row>
             <Col>
-              <Form.Label size="sm">Username</Form.Label>
+              {this.renderLabel("username")}
               <Form.Control
                 type="text"
                 list="data"
@@ -78,7 +97,7 @@ class ResultRow extends Component {
               </datalist>
             </Col>
             <Col xs="auto">
-              <Form.Label size="sm">Cash</Form.Label>
+              {this.renderLabel("cash")}
               <Form.Control
                 size="sm"
                 type="number"
