@@ -46,7 +46,7 @@ class CreatePlayerForm extends Component {
 
   render() {
     return (
-      <div>
+      <div className="custom-form">
         <Form>
           <Form.Group>
             <Form.Label>Username:</Form.Label>
