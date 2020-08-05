@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ResultRow from "./ResultRow";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import "../customForm.css";
 //on page load, pull all the usernames so that we can fill our rows
@@ -88,7 +89,13 @@ class ResultInputForm extends Component {
     return "";
   }
 
-  sendForm() {
+  sendForm(event) {
+    const form = event.currentTarget;
+    if (form.checkValidity() === false) {
+      alert("not valid");
+      event.preventDefault();
+      event.stopPropagation();
+    }
     const warningString = this.parseGameInput();
     if (warningString != "") {
       alert(warningString);
@@ -125,7 +132,7 @@ class ResultInputForm extends Component {
       <div>
         {loaded ? (
           <div className="custom-form">
-            <Form>
+            <Form onSubmit={this.sendForm}>
               <Form.Row>
                 <Form.Group as={Col}>
                   <Form.Label>Game Name</Form.Label>
@@ -133,6 +140,7 @@ class ResultInputForm extends Component {
                     type="text"
                     name="gameName"
                     onChange={this.handleChange}
+                    required
                   />
                 </Form.Group>
                 <Form.Group as={Col} xs="auto">
@@ -161,6 +169,7 @@ class ResultInputForm extends Component {
                 <Form.Control
                   name="season"
                   type="number"
+                  required
                   onChange={this.handleChange}
                 />
               </Form.Group>
@@ -170,6 +179,7 @@ class ResultInputForm extends Component {
                   name="gameDate"
                   type="date"
                   onChange={this.handleChange}
+                  required
                 />
               </Form.Group>
               <Form.Group>
@@ -178,16 +188,13 @@ class ResultInputForm extends Component {
                   type="number"
                   name="numberOfPlayers"
                   onChange={this.handleChange}
+                  required
                 />
               </Form.Group>
               <hr />
               {this.getRows()}
               <Form.Group>
-                <Form.Control
-                  type="button"
-                  value="submit"
-                  onClick={this.sendForm}
-                />
+                <Button type="submit">Submit Form</Button>
               </Form.Group>
             </Form>
           </div>

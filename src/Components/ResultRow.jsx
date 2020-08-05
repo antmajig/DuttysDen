@@ -67,6 +67,7 @@ class ResultRow extends Component {
                 type="text"
                 list="data"
                 size="sm"
+                required
                 onChange={this.usernameChange}
               />
               <datalist id="data">
