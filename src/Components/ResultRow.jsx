@@ -58,17 +58,16 @@ class ResultRow extends Component {
   }
 
   renderLabel(label) {
-    if (this.props.rowId == 0) {
+    if (this.props.rowId === 0) {
       switch (label) {
         case "username":
           return <Form.Label size="sm">Username</Form.Label>;
-          break;
         case "cash":
           return <Form.Label size="sm">Cash</Form.Label>;
-          break;
         case "bounty":
           return <Form.Label size="sm">Bounty Cash</Form.Label>;
-          break;
+        default:
+          return;
       }
     }
     return;
