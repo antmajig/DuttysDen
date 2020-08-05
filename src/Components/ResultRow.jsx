@@ -47,6 +47,7 @@ class ResultRow extends Component {
             <Form.Control
               size="sm"
               type="number"
+              step="0.01"
               onChange={this.bountyChange}
             />
           </Col>
@@ -81,6 +82,7 @@ class ResultRow extends Component {
               <Form.Control
                 size="sm"
                 type="number"
+                step="0.01"
                 onChange={this.cashChange}
               />
             </Col>
