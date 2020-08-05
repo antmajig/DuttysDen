@@ -14,7 +14,7 @@ function specialCases(results) {
     return true;
   }
   if (numberOfPlayers < 4) {
-    results[0].points = 100000;
+    results[0].points = 0;
     return true;
   }
   return false;
