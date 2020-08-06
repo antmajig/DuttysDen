@@ -81,17 +81,21 @@ router.post("/add-game", async function (req, res) {
     calculatePoints(req.body.rowData);
   }
   const insertResultQuery =
-    "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES (?,?,?,?,?,?)";
-  const resultValues = [
-    req.body.rowData[0].PlayerID,
-    gamePromise,
-    0,
-    req.body.rowData[0].points,
-    req.body.rowData[0].cash,
-    req.body.rowData[0].bountyCash,
-  ];
+    "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES ?";
+  resultValues = [];
+  for (i = 0; i < req.body.rowData.length; i++) {
+    valueItem = [
+      req.body.rowData[i].PlayerID,
+      gamePromise,
+      i,
+      req.body.rowData[i].points,
+      req.body.rowData[i].cash,
+      req.body.rowData[i].bountyCash,
+    ];
+    resultValues.push(valueItem);
+  }
   let resultPromise = await new Promise((result, rejection) => {
-    connection.query(insertResultQuery, resultValues, function (
+    connection.query(insertResultQuery, [resultValues], function (
       error,
       rows,
       fields
