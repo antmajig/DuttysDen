@@ -8,7 +8,7 @@ router.get("/leaderboard", async function (req, res, next) {
   const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
-  const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 5";
+  const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 4";
   let resultsFromSeason = "SELECT * FROM Result WHERE GameId IN (";
   const playerQuery = "SELECT * FROM Player";
   let gamePromise = await new Promise((res, rej) => {
@@ -38,6 +38,18 @@ router.get("/leaderboard", async function (req, res, next) {
       res(results);
     });
   });
+
+  function comparePlayers(a, b) {
+    const pointsA = a.Points;
+    const pointsB = b.Points;
+    let comp = 0;
+    if (pointsA > pointsB) {
+      comp = -1;
+    } else if (pointsA < pointsB) {
+      comp = 1;
+    }
+    return comp;
+  }
 
   let leaderboard = [];
   resultPromise.map((result) => {
@@ -71,7 +83,8 @@ router.get("/leaderboard", async function (req, res, next) {
     );
     leadEntry.PlayerID = playerName[0].PlayerName;
   });
-  res.send(leaderboard);
+
+  res.send(leaderboard.sort(comparePlayers));
 });
 
 module.exports = router;
