@@ -99,9 +99,10 @@ class ResultInputForm extends Component {
     const warningString = this.parseGameInput();
     if (warningString !== "") {
       alert(warningString);
+      event.preventDefault();
+      event.stopPropagation();
       return;
     }
-    console.log(this.state);
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -110,6 +111,8 @@ class ResultInputForm extends Component {
     fetch("/add-game", requestOptions)
       .then((response) => response.json)
       .then((data) => console.log(data));
+    event.preventDefault();
+    event.stopPropagation();
   }
 
   componentDidMount() {

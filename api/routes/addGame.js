@@ -25,7 +25,6 @@ function calculatePoints(results) {
     return;
   }
   const numberOfPlayers = results.length;
-  console.log("LEGHT" + numberOfPlayers);
   const p = Math.round(0.34 * numberOfPlayers);
   let divideConst = 0;
   for (i = 0; i < p; i++) {
@@ -50,6 +49,7 @@ function calculatePoints(results) {
 }
 
 router.post("/add-game", async function (req, res) {
+  console.log("addgame");
   const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
@@ -76,7 +76,7 @@ router.post("/add-game", async function (req, res) {
   }).catch((error) => {
     let fail = true;
   });
-
+  console.log("Created Game");
   if (req.body.points) {
     calculatePoints(req.body.rowData);
   }
