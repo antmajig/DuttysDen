@@ -29,6 +29,13 @@ class Leaderboard extends Component {
           <div>
             <Table striped bordered hover size="sm" variant="dark">
               <thead>
+                <th align="center" colspan="4">
+                  <h5 align="center" font-weight="bold">
+                    Season 5
+                  </h5>
+                </th>
+              </thead>
+              <thead>
                 <tr>
                   <th>Rank</th>
                   <th>Username</th>
