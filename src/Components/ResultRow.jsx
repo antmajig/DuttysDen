@@ -4,15 +4,16 @@ import Col from "react-bootstrap/Col";
 class ResultRow extends Component {
   constructor(props) {
     super(props);
-    let username = "";
-    let cash = 0;
-    let bountyCash = 0;
+    this.username = "";
+    this.cash = 12;
+    this.bountyCash = 0;
     this.usernameChange = this.usernameChange.bind(this);
     this.cashChange = this.cashChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.renderBountyField = this.renderBountyField.bind(this);
     this.bountyChange = this.bountyChange.bind(this);
     this.renderLabel = this.renderLabel.bind(this);
+    this.renderBountyField = this.renderBountyField.bind(this);
   }
 
   handleChange() {
@@ -49,6 +50,7 @@ class ResultRow extends Component {
               size="sm"
               type="number"
               step="0.01"
+              required
               onChange={this.bountyChange}
             />
           </Col>
@@ -76,6 +78,7 @@ class ResultRow extends Component {
   render() {
     const players = this.props.players;
     const rowId = this.props.rowId;
+    console.log(this.cash);
     return (
       <div key={rowId}>
         <Form.Group>
@@ -101,6 +104,7 @@ class ResultRow extends Component {
                 size="sm"
                 type="number"
                 step="0.01"
+                required
                 onChange={this.cashChange}
               />
             </Col>

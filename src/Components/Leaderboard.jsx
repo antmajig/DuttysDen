@@ -22,7 +22,7 @@ class Leaderboard extends Component {
   }
 
   render() {
-    const { isLoaded, error, items } = this.state;
+    const { isLoaded, items } = this.state;
     return (
       <div className="leaderboard">
         {isLoaded ? (

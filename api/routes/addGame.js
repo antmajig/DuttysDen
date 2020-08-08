@@ -74,12 +74,13 @@ router.post("/add-game", async function (req, res) {
       result(rows.insertId);
     });
   }).catch((error) => {
-    let fail = true;
+    res.send(error);
   });
   console.log("Created Game");
   if (req.body.points) {
     calculatePoints(req.body.rowData);
   }
+  console.log(req.body.rowData);
   const insertResultQuery =
     "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES ?";
   resultValues = [];
@@ -106,7 +107,7 @@ router.post("/add-game", async function (req, res) {
       result("done");
     });
   }).catch((error) => {
-    let fail = true;
+    res.send(error);
   });
 
   res.send(true);

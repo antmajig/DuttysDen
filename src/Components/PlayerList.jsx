@@ -24,7 +24,7 @@ class PlayerList extends Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const { isLoaded, items } = this.state;
     return (
       <div className="leaderboard">
         {isLoaded ? (

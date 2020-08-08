@@ -8,7 +8,7 @@ router.get("/leaderboard", async function (req, res, next) {
   const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
 
-  const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 4";
+  const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 5";
   let resultsFromSeason = "SELECT * FROM Result WHERE GameId IN (";
   const playerQuery = "SELECT * FROM Player";
   let gamePromise = await new Promise((res, rej) => {
