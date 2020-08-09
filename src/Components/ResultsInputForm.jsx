@@ -89,12 +89,14 @@ class ResultInputForm extends Component {
     return "";
   }
 
-  sendForm(event) {
+  async sendForm(event) {
     const form = event.currentTarget;
+    event.preventDefault();
     if (form.checkValidity() === false) {
       alert("not valid");
       event.preventDefault();
       event.stopPropagation();
+      return;
     }
     const warningString = this.parseGameInput();
     if (warningString !== "") {
@@ -108,11 +110,16 @@ class ResultInputForm extends Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(this.state),
     };
-    fetch("/add-game", requestOptions)
-      .then((response) => response.json)
-      .then((data) => console.log(data));
-    event.preventDefault();
-    event.stopPropagation();
+
+    let response = await fetch("/add-game", requestOptions);
+    let jsonRes = await response.json();
+
+    if (!jsonRes.success) {
+      alert(jsonRes.error.sqlMessage);
+    } else {
+      alert("Game added!");
+      form.reset();
+    }
   }
 
   componentDidMount() {

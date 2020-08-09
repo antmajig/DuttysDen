@@ -5,7 +5,7 @@ class ResultRow extends Component {
   constructor(props) {
     super(props);
     this.username = "";
-    this.cash = 12;
+    this.cash = 0;
     this.bountyCash = 0;
     this.usernameChange = this.usernameChange.bind(this);
     this.cashChange = this.cashChange.bind(this);
