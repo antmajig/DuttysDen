@@ -11,11 +11,11 @@ router.get("/leaderboard", async function (req, res, next) {
   const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 5";
   let resultsFromSeason = "SELECT * FROM Result WHERE GameId IN (";
   const playerQuery = "SELECT * FROM Player";
-  let gamePromise = await new Promise((res, rej) => {
+  let gamePromise = await new Promise((result, reject) => {
     connection.query(gamesInSeason, function (error, gameIds) {
       if (error) {
         console.log("Error gettings games in season");
-        rej(error);
+        reject(error);
       }
       const numberOfGames = gameIds.length;
       gameIds.map((gameId, i) => {
@@ -25,17 +25,17 @@ router.get("/leaderboard", async function (req, res, next) {
         }
       });
       resultsFromSeason += ")";
-      res(gameIds);
+      result(gameIds);
     });
   });
 
-  let resultPromise = await new Promise((res, rej) => {
+  let resultPromise = await new Promise((result, reject) => {
     connection.query(resultsFromSeason, function (error, results) {
       if (error) {
         console.log("Error gettings results in season");
-        rej(error);
+        reject(error);
       }
-      res(results);
+      result(results);
     });
   });
 
