@@ -93,16 +93,11 @@ class ResultInputForm extends Component {
     const form = event.currentTarget;
     event.preventDefault();
     if (form.checkValidity() === false) {
-      alert("not valid");
-      event.preventDefault();
-      event.stopPropagation();
       return;
     }
     const warningString = this.parseGameInput();
     if (warningString !== "") {
       alert(warningString);
-      event.preventDefault();
-      event.stopPropagation();
       return;
     }
     const requestOptions = {
