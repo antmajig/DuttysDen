@@ -24,6 +24,16 @@ class GamesPage extends Component {
       });
   }
 
+  formatDate(dateString) {
+    const returnDate = new Intl.DateTimeFormat("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit",
+    }).format(dateString);
+
+    return returnDate;
+  }
+
   componentDidMount() {
     this.getGames();
   }
@@ -37,19 +47,17 @@ class GamesPage extends Component {
               <thead>
                 <tr>
                   <th>Game Name</th>
-                  <th>Date Player</th>
-                  <th>Number of Players</th>
+                  <th>Date</th>
                   <th>Game Type</th>
                 </tr>
               </thead>
               <tbody>
                 {games.map((game) => (
-                  <tr>
-                    <Link to={`/game/${game.GameID}`}>
-                      <td>{game.GameName}</td>
-                    </Link>
-                    <td>{game.Date}</td>
-                    <td>0</td>
+                  <tr key={game.GameID}>
+                    <td>
+                      <Link to={`/game/${game.GameID}`}>{game.GameName}</Link>
+                    </td>
+                    <td>{this.formatDate(game.GameDate)}</td>
                     <td>{game.GameType}</td>
                   </tr>
                 ))}

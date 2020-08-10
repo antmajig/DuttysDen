@@ -7,15 +7,17 @@ class GamePage extends Component {
     this.state = {
       dataLoaded: false,
       data: [],
+      players: [],
     };
+    this.getUsername = this.getUsername.bind(this);
   }
 
-  getGameData() {
+  async getGameData() {
     const {
       match: { params },
     } = this.props;
     const fetchString = "/game/" + params.gameid;
-    fetch(fetchString)
+    await fetch(fetchString)
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -23,10 +25,36 @@ class GamePage extends Component {
           data: data,
         });
       });
+
+    await fetch("/playerlist")
+      .then((response) => response.json())
+      .then((data) => {
+        this.setState({
+          players: data,
+        });
+      });
   }
 
   componentDidMount() {
     this.getGameData();
+  }
+
+  formatCash(cash) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(cash);
+  }
+
+  getUsername(userID) {
+    let pExists = this.state.players.filter(
+      (player) => userID === player.PlayerID
+    );
+    if (pExists.length > 0) {
+      return pExists[0].PlayerName;
+    }
   }
 
   render() {
@@ -36,25 +64,29 @@ class GamePage extends Component {
         {dataLoaded ? (
           <Table striped bordered hover size="sm" variant="dark">
             <thead>
-              <th align="center" colspan="4">
-                <h5 align="center" font-weight="bold">
-                  {data.gameData[0].GameName}
-                </h5>
-              </th>
+              <tr>
+                <th align="center" colSpan="4">
+                  <h5 align="center" fontWeight="bold">
+                    {data.gameData[0].GameName}
+                  </h5>
+                </th>
+              </tr>
             </thead>
             <thead>
-              <th>Placement</th>
-              <th>Username</th>
-              <th>Cash</th>
-              <th>Points</th>
+              <tr>
+                <th>Placement</th>
+                <th>Username</th>
+                <th>Points</th>
+                <th>Cash</th>
+              </tr>
             </thead>
             <tbody>
               {data.resultData.map((result) => (
-                <tr>
+                <tr key={result.ResultID}>
                   <td>{result.Position}</td>
-                  <td>{result.PlayerID}</td>
-                  <td>{result.Cash}</td>
+                  <td>{this.getUsername(result.PlayerID)}</td>
                   <td>{result.Points}</td>
+                  <td>{this.formatCash(result.Cash)}</td>
                 </tr>
               ))}
             </tbody>
