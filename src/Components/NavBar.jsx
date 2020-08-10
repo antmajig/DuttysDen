@@ -12,6 +12,9 @@ function NavBar() {
         <Link to="/leaderboard">
           <li className="nav-link">Leaderboard</li>
         </Link>
+        <Link to="/games">
+          <li className="nav-link">Games</li>
+        </Link>
       </nav>
     </div>
   );
