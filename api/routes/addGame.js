@@ -25,7 +25,7 @@ function calculatePoints(results) {
     return;
   }
   const numberOfPlayers = results.length;
-  const p = Math.round(0.34 * numberOfPlayers);
+  const p = Math.floor(0.34 * numberOfPlayers);
   let divideConst = 0;
   for (i = 0; i < p; i++) {
     divideConst += Math.sqrt(numberOfPlayers) / Math.sqrt(i + 1);
