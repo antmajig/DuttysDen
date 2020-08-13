@@ -140,62 +140,70 @@ class ResultInputForm extends Component {
             <Form onSubmit={this.sendForm}>
               <Form.Row>
                 <Form.Group as={Col}>
-                  <Form.Label>Game Name</Form.Label>
+                  <Form.Label size="sm">Game Name</Form.Label>
                   <Form.Control
                     type="text"
                     name="gameName"
                     onChange={this.handleChange}
+                    size="sm"
                     required
                   />
                 </Form.Group>
-                <Form.Group as={Col} xs="auto">
+                <Form.Group as={Col} xs="auto" size="sm">
                   <Form.Label>Game Type</Form.Label>
                   <Form.Control
                     name="gameType"
                     as="select"
                     onChange={this.handleChange}
+                    size="sm"
                   >
                     <option value="Main">Main</option>
                     <option value="Turbo">Turbo</option>
                     <option value="PKO">PKO</option>
                   </Form.Control>
                 </Form.Group>
-                <Form.Group as={Col} xs="auto">
-                  <Form.Label>Points</Form.Label>
+                <Form.Group as={Col} xs="auto" size="sm">
+                  <Form.Label size="sm">Points</Form.Label>
                   <Form.Control
+                    size="sm"
                     name="points"
                     type="checkbox"
                     onChange={this.handleChange}
                   />
                 </Form.Group>
               </Form.Row>
-              <Form.Group>
-                <Form.Label>Season</Form.Label>
-                <Form.Control
-                  name="season"
-                  type="number"
-                  required
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Date</Form.Label>
-                <Form.Control
-                  name="gameDate"
-                  type="date"
-                  onChange={this.handleChange}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Number of players</Form.Label>
-                <Form.Control
-                  type="number"
-                  name="numberOfPlayers"
-                  onChange={this.handleChange}
-                  required
-                />
-              </Form.Group>
+              <Form.Row>
+                <Form.Group as={Col} xs="auto">
+                  <Form.Label size="sm">Season</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    name="season"
+                    type="number"
+                    required
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label size="sm">Date</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    name="gameDate"
+                    type="date"
+                    onChange={this.handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label size="sm">Number of players</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    type="number"
+                    name="numberOfPlayers"
+                    onChange={this.handleChange}
+                    required
+                  />
+                </Form.Group>
+              </Form.Row>
               <hr />
               {this.getRows()}
               <Form.Group>
