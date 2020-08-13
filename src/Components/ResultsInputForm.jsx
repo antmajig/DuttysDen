@@ -19,7 +19,7 @@ class ResultInputForm extends Component {
       loaded: false,
       gameType: "Main",
       gameName: "",
-      points: false,
+      points: true,
       season: 0,
       gameDate: "",
     };
@@ -113,7 +113,7 @@ class ResultInputForm extends Component {
       alert(jsonRes.error.sqlMessage);
     } else {
       alert("Game added!");
-      form.reset();
+      window.location.reload();
     }
   }
 
@@ -165,6 +165,7 @@ class ResultInputForm extends Component {
                 <Form.Group as={Col} xs="auto" size="sm">
                   <Form.Label size="sm">Points</Form.Label>
                   <Form.Control
+                    defaultChecked="true"
                     size="sm"
                     name="points"
                     type="checkbox"
