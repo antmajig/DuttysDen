@@ -25,12 +25,12 @@ class GamesPage extends Component {
   }
 
   formatDate(dateString) {
+    const date = new Date(dateString);
     const returnDate = new Intl.DateTimeFormat("en-GB", {
       year: "numeric",
       month: "long",
       day: "2-digit",
-    }).format(dateString);
-
+    }).format(date);
     return returnDate;
   }
 
@@ -57,7 +57,7 @@ class GamesPage extends Component {
                     <td>
                       <Link to={`/game/${game.GameID}`}>{game.GameName}</Link>
                     </td>
-                    <td>{this.formatDate(game.GameDate)}</td>
+                    <td>{this.formatDate(game.Date)}</td>
                     <td>{game.GameType}</td>
                   </tr>
                 ))}
