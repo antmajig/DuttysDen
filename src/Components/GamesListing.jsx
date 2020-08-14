@@ -3,7 +3,7 @@ import { Component } from "react";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 
-class GamesPage extends Component {
+class GamesListing extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -72,4 +72,4 @@ class GamesPage extends Component {
   }
 }
 
-export default GamesPage;
+export default GamesListing;

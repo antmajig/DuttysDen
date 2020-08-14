@@ -7,7 +7,7 @@ import PlayerList from "./Components/PlayerList.jsx";
 import CreatePlayerForm from "./Components/CreatePlayerForm.jsx";
 import ResultsInputForm from "./Components/ResultsInputForm.jsx";
 import Leaderboard from "./Components/Leaderboard.jsx";
-import GamesPage from "./Components/GamesPage.jsx";
+import GamesListing from "./Components/GamesListing.jsx";
 import GamePage from "./Components/GamePage.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -21,7 +21,7 @@ ReactDOM.render(
       <Route path="/leaderboard" exact component={Leaderboard} />
       <Route path="/admin/add-player" exact component={CreatePlayerForm} />
       <Route path="/admin/add-game" exact component={ResultsInputForm} />
-      <Route path="/games" exact component={GamesPage} />
+      <Route path="/games" exact component={GamesListing} />
       <Route path="/game/:gameid" exact component={GamePage} />
     </Router>
   </React.StrictMode>,
