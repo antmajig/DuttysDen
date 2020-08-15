@@ -49,7 +49,7 @@ class Leaderboard extends Component {
                     <td>{index + 1}</td>
                     <td>{item.PlayerID}</td>
                     <td>{item.GamesPlayed}</td>
-                    <td>{item.Points}</td>
+                    <td>{item.Points.toFixed(2)}</td>
                   </tr>
                 ))}
               </tbody>
