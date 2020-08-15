@@ -3,6 +3,7 @@ import { Component } from "react";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import FadeIn from "react-fade-in";
 
 class GamesListing extends Component {
   constructor(props) {
@@ -43,28 +44,30 @@ class GamesListing extends Component {
     return (
       <div className="leaderboard">
         {loadedGames ? (
-          <div>
-            <Table striped bordered hover size="sm" variant="dark">
-              <thead>
-                <tr>
-                  <th>Game Name</th>
-                  <th>Date</th>
-                  <th>Game Type</th>
-                </tr>
-              </thead>
-              <tbody>
-                {games.map((game) => (
-                  <tr key={game.GameID}>
-                    <td>
-                      <Link to={`/game/${game.GameID}`}>{game.GameName}</Link>
-                    </td>
-                    <td>{this.formatDate(game.Date)}</td>
-                    <td>{game.GameType}</td>
+          <FadeIn>
+            <div>
+              <Table striped bordered hover size="sm" variant="dark">
+                <thead>
+                  <tr>
+                    <th>Game Name</th>
+                    <th>Date</th>
+                    <th>Game Type</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
+                </thead>
+                <tbody>
+                  {games.map((game) => (
+                    <tr key={game.GameID}>
+                      <td>
+                        <Link to={`/game/${game.GameID}`}>{game.GameName}</Link>
+                      </td>
+                      <td>{this.formatDate(game.Date)}</td>
+                      <td>{game.GameType}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          </FadeIn>
         ) : (
           <LoadingSpinner />
         )}

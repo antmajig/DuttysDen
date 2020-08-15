@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import LoadingSpinner from "./LoadingSpinner";
+import FadeIn from "react-fade-in";
+
 class PlayerList extends Component {
   constructor() {
     super();
@@ -29,26 +31,28 @@ class PlayerList extends Component {
     return (
       <div className="leaderboard">
         {isLoaded ? (
-          <div>
-            <Table striped bordered hover size="sm" variant="dark">
-              <thead>
-                <tr>
-                  <th>Player Name</th>
-                  <th>Real Name</th>
-                  <th>Location</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item) => (
+          <FadeIn>
+            <div>
+              <Table striped bordered hover size="sm" variant="dark">
+                <thead>
                   <tr>
-                    <td>{item.PlayerName}</td>
-                    <td>{item.RealName}</td>
-                    <td>{item.Location}</td>
+                    <th>Player Name</th>
+                    <th>Real Name</th>
+                    <th>Location</th>
                   </tr>
-                ))}
-              </tbody>
-            </Table>
-          </div>
+                </thead>
+                <tbody>
+                  {items.map((item) => (
+                    <tr>
+                      <td>{item.PlayerName}</td>
+                      <td>{item.RealName}</td>
+                      <td>{item.Location}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            </div>
+          </FadeIn>
         ) : (
           <LoadingSpinner />
         )}

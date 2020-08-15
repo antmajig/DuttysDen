@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import FadeIn from "react-fade-in";
 
 class GamePage extends Component {
   constructor(props) {
@@ -79,37 +80,39 @@ class GamePage extends Component {
     return (
       <div className="leaderboard">
         {dataLoaded ? (
-          <Table striped bordered hover size="sm" variant="dark">
-            <thead>
-              <tr>
-                <th align="center" colSpan="5">
-                  <h5 align="center" fontWeight="bold">
-                    {data.gameData[0].GameName}
-                  </h5>
-                </th>
-              </tr>
-            </thead>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Username</th>
-                <th>Points</th>
-                <th>Cash</th>
-                {this.renderBountyHeader()}
-              </tr>
-            </thead>
-            <tbody>
-              {data.resultData.map((result) => (
-                <tr key={result.ResultID}>
-                  <td>{result.Position + 1}</td>
-                  <td>{this.getUsername(result.PlayerID)}</td>
-                  <td>{result.Points}</td>
-                  <td>{this.formatCash(result.Cash)}</td>
-                  {this.renderBounty(result.BountyCash)}
+          <FadeIn>
+            <Table striped bordered hover size="sm" variant="dark">
+              <thead>
+                <tr>
+                  <th align="center" colSpan="5">
+                    <h5 align="center" fontWeight="bold">
+                      {data.gameData[0].GameName}
+                    </h5>
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username</th>
+                  <th>Points</th>
+                  <th>Cash</th>
+                  {this.renderBountyHeader()}
+                </tr>
+              </thead>
+              <tbody>
+                {data.resultData.map((result) => (
+                  <tr key={result.ResultID}>
+                    <td>{result.Position + 1}</td>
+                    <td>{this.getUsername(result.PlayerID)}</td>
+                    <td>{result.Points}</td>
+                    <td>{this.formatCash(result.Cash)}</td>
+                    {this.renderBounty(result.BountyCash)}
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </FadeIn>
         ) : (
           <LoadingSpinner />
         )}
