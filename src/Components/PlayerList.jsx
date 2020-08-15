@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
+import LoadingSpinner from "./LoadingSpinner";
 class PlayerList extends Component {
   constructor() {
     super();
@@ -49,7 +50,7 @@ class PlayerList extends Component {
             </Table>
           </div>
         ) : (
-          <h3>Loading...</h3>
+          <LoadingSpinner />
         )}
       </div>
     );

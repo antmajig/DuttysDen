@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import "../customForm.css";
+import LoadingSpinner from "./LoadingSpinner";
 //on page load, pull all the usernames so that we can fill our rows
 //do form validation (no 2 usernames of the same value)
 //check to see if the sql query executed correctly.
@@ -229,7 +230,7 @@ class ResultInputForm extends Component {
           </div>
         ) : (
           <div>
-            <h1>loading</h1>
+            <LoadingSpinner />
           </div>
         )}
       </div>

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
+import LoadingSpinner from "./LoadingSpinner.jsx";
+
 class GamePage extends Component {
   constructor(props) {
     super(props);
@@ -109,7 +111,7 @@ class GamePage extends Component {
             </tbody>
           </Table>
         ) : (
-          <h1>Not Loading</h1>
+          <LoadingSpinner />
         )}
       </div>
     );

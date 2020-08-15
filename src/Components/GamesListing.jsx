@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
+import LoadingSpinner from "./LoadingSpinner.jsx";
 
 class GamesListing extends Component {
   constructor(props) {
@@ -65,7 +66,7 @@ class GamesListing extends Component {
             </Table>
           </div>
         ) : (
-          <h1>Loading</h1>
+          <LoadingSpinner />
         )}
       </div>
     );

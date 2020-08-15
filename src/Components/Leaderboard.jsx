@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Table } from "react-bootstrap";
 import "../leaderboard.css";
+import LoadingSpinner from "./LoadingSpinner.jsx";
+
 class Leaderboard extends Component {
   constructor(props) {
     super(props);
@@ -56,7 +58,7 @@ class Leaderboard extends Component {
             </Table>
           </div>
         ) : (
-          <h3>Loading...</h3>
+          <LoadingSpinner />
         )}
       </div>
     );
