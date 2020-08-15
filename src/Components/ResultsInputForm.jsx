@@ -65,8 +65,15 @@ class ResultInputForm extends Component {
 
   parseGameInput() {
     const numberOfPlayers = this.state.rowData.length;
+    let uniquePlayers = [];
+    let duplicatePlayers = [];
     for (let i = 0; i < numberOfPlayers; i++) {
       let username = this.state.rowData[i].username;
+      if (!uniquePlayers.includes(username)) {
+        uniquePlayers.push(username);
+      } else {
+        duplicatePlayers.push(username);
+      }
       let findResult = this.state.players.filter(
         (player) => player.PlayerName === username
       );
@@ -76,6 +83,14 @@ class ResultInputForm extends Component {
       } else {
         return "Invalid username input";
       }
+    }
+
+    if (duplicatePlayers.length > 0) {
+      let warningMsg = "Duplicate usernames - ";
+      duplicatePlayers.forEach((name) => {
+        warningMsg += "\n" + name;
+      });
+      return warningMsg;
     }
 
     let foundSeason =
