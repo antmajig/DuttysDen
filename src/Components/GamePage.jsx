@@ -10,6 +10,7 @@ class GamePage extends Component {
       players: [],
     };
     this.getUsername = this.getUsername.bind(this);
+    this.renderBounty = this.renderBounty.bind(this);
   }
 
   async getGameData() {
@@ -57,6 +58,20 @@ class GamePage extends Component {
     }
   }
 
+  renderBountyHeader() {
+    const isPKO = this.state.data.gameData[0].GameType === "PKO";
+    if (isPKO) {
+      return <th>Bounty Cash</th>;
+    }
+  }
+
+  renderBounty(bountyCash) {
+    const isPKO = this.state.data.gameData[0].GameType === "PKO";
+    if (isPKO) {
+      return <td>{this.formatCash(bountyCash)}</td>;
+    }
+  }
+
   render() {
     const { dataLoaded, data } = this.state;
     return (
@@ -65,7 +80,7 @@ class GamePage extends Component {
           <Table striped bordered hover size="sm" variant="dark">
             <thead>
               <tr>
-                <th align="center" colSpan="4">
+                <th align="center" colSpan="5">
                   <h5 align="center" fontWeight="bold">
                     {data.gameData[0].GameName}
                   </h5>
@@ -74,19 +89,21 @@ class GamePage extends Component {
             </thead>
             <thead>
               <tr>
-                <th>Placement</th>
+                <th>#</th>
                 <th>Username</th>
                 <th>Points</th>
                 <th>Cash</th>
+                {this.renderBountyHeader()}
               </tr>
             </thead>
             <tbody>
               {data.resultData.map((result) => (
                 <tr key={result.ResultID}>
-                  <td>{result.Position}</td>
+                  <td>{result.Position + 1}</td>
                   <td>{this.getUsername(result.PlayerID)}</td>
                   <td>{result.Points}</td>
                   <td>{this.formatCash(result.Cash)}</td>
+                  {this.renderBounty(result.BountyCash)}
                 </tr>
               ))}
             </tbody>
