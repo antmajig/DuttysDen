@@ -12,6 +12,7 @@ var usersRouter = require("./routes/users");
 var playerListRouter = require("./routes/playerListRoute");
 var leaderBoardRouter = require("./routes/leaderBoardRoute");
 var gamesRouter = require("./routes/getGame");
+var playerRouter = require("./routes/playerRoute");
 var app = express();
 
 // view engine setup
@@ -32,6 +33,7 @@ app.use("/users", usersRouter);
 app.use("/", playerListRouter);
 app.use("/", leaderBoardRouter);
 app.use("/", gamesRouter);
+app.use("/", playerRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
