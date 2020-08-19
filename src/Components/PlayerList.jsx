@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import LoadingSpinner from "./LoadingSpinner";
 import FadeIn from "react-fade-in";
-
+import { Link } from "react-router-dom";
 class PlayerList extends Component {
   constructor() {
     super();
@@ -28,6 +28,7 @@ class PlayerList extends Component {
 
   render() {
     const { isLoaded, items } = this.state;
+    console.log(this.state.items);
     return (
       <div className="leaderboard">
         {isLoaded ? (
@@ -44,7 +45,11 @@ class PlayerList extends Component {
                 <tbody>
                   {items.map((item) => (
                     <tr>
-                      <td>{item.PlayerName}</td>
+                      <td>
+                        <Link to={`/player/${item.PlayerID}`}>
+                          {item.PlayerName}
+                        </Link>
+                      </td>
                       <td>{item.RealName}</td>
                       <td>{item.Location}</td>
                     </tr>

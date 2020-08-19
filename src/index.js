@@ -9,6 +9,7 @@ import ResultsInputForm from "./Components/ResultsInputForm.jsx";
 import Leaderboard from "./Components/Leaderboard.jsx";
 import GamesListing from "./Components/GamesListing.jsx";
 import GamePage from "./Components/GamePage.jsx";
+import PlayerPage from "./Components/PlayerPage.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route path="/admin/add-game" exact component={ResultsInputForm} />
       <Route path="/games" exact component={GamesListing} />
       <Route path="/game/:gameid" exact component={GamePage} />
+      <Route path="/player/:playerid" exact component={PlayerPage} />
     </Router>
   </React.StrictMode>,
   document.getElementById("root")

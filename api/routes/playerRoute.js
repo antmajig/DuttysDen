@@ -19,7 +19,7 @@ router.get("/player/:playerid", async function (req, res, next) {
         console.log("error thrown");
         rejection();
       } else {
-        resultObject.playerData.push(rows);
+        resultObject.playerData = rows;
         result();
       }
     });
@@ -32,7 +32,7 @@ router.get("/player/:playerid", async function (req, res, next) {
         console.log("error thrown");
         rejection();
       } else {
-        resultObject.resultData.push(rows);
+        resultObject.resultData = rows;
         result();
       }
     });
