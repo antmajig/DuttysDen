@@ -2,6 +2,8 @@ import React from "react";
 import { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import Table from "react-bootstrap/Table";
+import FadeIn from "react-fade-in";
+
 class PlayerPage extends Component {
   constructor(props) {
     super(props);
@@ -82,24 +84,26 @@ class PlayerPage extends Component {
     return (
       <div className="leaderboard">
         {isLoaded ? (
-          <Table striped bordered hover size="sm" variant="dark">
-            <thead>
-              <tr>
-                <th>Player Name</th>
-                <th>Total Cash</th>
-                <th>Golds</th>
-                <th>Silvers</th>
-                <th>Bronzes</th>
-              </tr>
-            </thead>
-            <tbody>
-              <td> {playerData.playerData[0].PlayerName}</td>
-              <td>{this.getTotalCash(playerData)}</td>
-              <td>{this.getGolds(playerData)}</td>
-              <td>{this.getSilvers(playerData)}</td>
-              <td>{this.getBronzes(playerData)}</td>
-            </tbody>
-          </Table>
+          <FadeIn>
+            <Table striped bordered hover size="sm" variant="dark">
+              <thead>
+                <tr>
+                  <th>Player Name</th>
+                  <th>Total Cash</th>
+                  <th>Golds</th>
+                  <th>Silvers</th>
+                  <th>Bronzes</th>
+                </tr>
+              </thead>
+              <tbody>
+                <td> {playerData.playerData[0].PlayerName}</td>
+                <td>{this.getTotalCash(playerData)}</td>
+                <td>{this.getGolds(playerData)}</td>
+                <td>{this.getSilvers(playerData)}</td>
+                <td>{this.getBronzes(playerData)}</td>
+              </tbody>
+            </Table>
+          </FadeIn>
         ) : (
           <LoadingSpinner />
         )}
