@@ -85,22 +85,28 @@ class PlayerPage extends Component {
       <div className="leaderboard">
         {isLoaded ? (
           <FadeIn>
-            <Table striped bordered hover size="sm" variant="dark">
-              <thead>
-                <tr>
-                  <th>Player Name</th>
-                  <th>Total Cash</th>
-                  <th>Golds</th>
-                  <th>Silvers</th>
-                  <th>Bronzes</th>
-                </tr>
-              </thead>
+            <Table striped hover bordered size="sm" variant="dark">
               <tbody>
-                <td> {playerData.playerData[0].PlayerName}</td>
-                <td>{this.getTotalCash(playerData)}</td>
-                <td>{this.getGolds(playerData)}</td>
-                <td>{this.getSilvers(playerData)}</td>
-                <td>{this.getBronzes(playerData)}</td>
+                <tr>
+                  <th width="10%">Player Name</th>
+                  <td> {playerData.playerData[0].PlayerName}</td>
+                </tr>
+                <tr>
+                  <th>Total Cash</th>
+                  <td>{this.getTotalCash(playerData)}</td>
+                </tr>
+                <tr>
+                  <th>Golds</th>
+                  <td>{this.getGolds(playerData)}</td>
+                </tr>
+                <tr>
+                  <th>Silvers</th>
+                  <td>{this.getSilvers(playerData)}</td>
+                </tr>
+                <tr>
+                  <th>Bronzes</th>
+                  <td>{this.getBronzes(playerData)}</td>
+                </tr>
               </tbody>
             </Table>
           </FadeIn>
