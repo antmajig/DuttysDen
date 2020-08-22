@@ -11,7 +11,7 @@ function LoadingSpinner() {
         height: "100vh",
       }}
     >
-      <Spinner animation="border" role="status">
+      <Spinner animation="border" role="status" variant="light">
         <span className="sr-only">Loading...</span>
       </Spinner>
     </div>
