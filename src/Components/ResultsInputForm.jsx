@@ -36,7 +36,10 @@ class ResultInputForm extends Component {
   }
 
   setRowData(row) {
-    this.state.rowData[row.rowId] = row;
+    let rowData = this.state.rowData;
+    rowData[row.rowId] = row;
+
+    this.setState({ rowData });
   }
 
   getRows() {
@@ -80,7 +83,10 @@ class ResultInputForm extends Component {
       );
       const found = findResult.length > 0;
       if (found) {
-        this.state.rowData[i].PlayerID = findResult[0].PlayerID;
+        let rowData = this.state.rowData;
+        rowData[i].PlayerID = findResult[0].PlayerID;
+
+        this.setState(rowData);
       } else {
         return "Invalid username input";
       }

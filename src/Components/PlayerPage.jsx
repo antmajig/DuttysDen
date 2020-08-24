@@ -38,6 +38,8 @@ class PlayerPage extends Component {
       if (result.Position === 1) {
         numberOfGolds++;
       }
+
+      return 0;
     });
 
     return numberOfGolds;
@@ -48,6 +50,7 @@ class PlayerPage extends Component {
       if (result.Position === 2) {
         numberOfSilvers++;
       }
+      return 0;
     });
 
     return numberOfSilvers;
@@ -58,6 +61,7 @@ class PlayerPage extends Component {
       if (result.Position === 3) {
         numberOfBronzes++;
       }
+      return 0;
     });
 
     return numberOfBronzes;
@@ -67,6 +71,7 @@ class PlayerPage extends Component {
     playerData.resultData.map((result) => {
       totalCash += Number(result.Cash);
       totalCash += Number(result.BountyCash);
+      return 0;
     });
 
     return new Intl.NumberFormat("en-US", {

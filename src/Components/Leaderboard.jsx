@@ -34,11 +34,13 @@ class Leaderboard extends Component {
             <div>
               <Table striped bordered hover size="sm" variant="dark">
                 <thead>
-                  <th align="center" colspan="4">
-                    <h5 align="center" font-weight="bold">
-                      Season 5
-                    </h5>
-                  </th>
+                  <tr>
+                    <th align="center" colSpan="4">
+                      <h5 align="center" fontWeight="bold">
+                        Season 5
+                      </h5>
+                    </th>
+                  </tr>
                 </thead>
                 <thead>
                   <tr>
@@ -50,7 +52,7 @@ class Leaderboard extends Component {
                 </thead>
                 <tbody>
                   {items.map((item, index) => (
-                    <tr>
+                    <tr key={item.PlayerID}>
                       <td>{index + 1}</td>
                       <td>
                         <Link

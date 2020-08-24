@@ -32,33 +32,31 @@ class PlayerList extends Component {
       <div className="leaderboard">
         {isLoaded ? (
           <FadeIn>
-            <div>
-              <Table striped bordered hover size="sm" variant="dark">
-                <thead>
-                  <tr>
-                    <th>Player Name</th>
-                    <th>Real Name</th>
-                    <th>Location</th>
+            <Table striped bordered hover size="sm" variant="dark">
+              <thead>
+                <tr>
+                  <th>Player Name</th>
+                  <th>Real Name</th>
+                  <th>Location</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item) => (
+                  <tr key={item.PlayerID}>
+                    <td>
+                      <Link
+                        className="linkText"
+                        to={`/player/${item.PlayerID}`}
+                      >
+                        {item.PlayerName}
+                      </Link>
+                    </td>
+                    <td>{item.RealName}</td>
+                    <td>{item.Location}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {items.map((item) => (
-                    <tr>
-                      <td>
-                        <Link
-                          className="linkText"
-                          to={`/player/${item.PlayerID}`}
-                        >
-                          {item.PlayerName}
-                        </Link>
-                      </td>
-                      <td>{item.RealName}</td>
-                      <td>{item.Location}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
+                ))}
+              </tbody>
+            </Table>
           </FadeIn>
         ) : (
           <LoadingSpinner />
