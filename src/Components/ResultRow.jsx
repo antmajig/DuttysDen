@@ -78,7 +78,6 @@ class ResultRow extends Component {
   render() {
     const players = this.props.players;
     const rowId = this.props.rowId;
-    console.log(this.cash);
     return (
       <div key={rowId}>
         <Form.Group>

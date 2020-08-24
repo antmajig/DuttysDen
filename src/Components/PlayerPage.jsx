@@ -25,7 +25,6 @@ class PlayerPage extends Component {
           dataLoaded: true,
           data: data,
         });
-        console.log(data);
       });
   }
 

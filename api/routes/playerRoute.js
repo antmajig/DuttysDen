@@ -16,7 +16,6 @@ router.get("/player/:playerid", async function (req, res, next) {
   let playerPromise = await new Promise((result, rejection) => {
     connection.query(playerQuery, playerID, function (error, rows) {
       if (error) {
-        console.log("error thrown");
         rejection();
       } else {
         resultObject.playerData = rows;
@@ -29,7 +28,6 @@ router.get("/player/:playerid", async function (req, res, next) {
   let resultsPromise = await new Promise((result, rejection) => {
     connection.query(resultsQuery, playerID, function (error, rows) {
       if (error) {
-        console.log("error thrown");
         rejection();
       } else {
         resultObject.resultData = rows;
@@ -38,7 +36,6 @@ router.get("/player/:playerid", async function (req, res, next) {
     });
   });
 
-  console.log("done");
   res.send(resultObject);
 });
 

@@ -10,7 +10,6 @@ router.get("/playerlist", function (req, res, next) {
   let query = "SELECT * FROM Player";
   connection.query(query, function (err, rows) {
     if (err) {
-      console.log("error thrown");
     } else {
       res.send(rows);
     }
@@ -22,7 +21,6 @@ router.get("/season", function (req, res, next) {
   let query = "SELECT * FROM Season";
   connection.query(query, function (err, rows) {
     if (err) {
-      console.log("error thrown");
     } else {
       res.send(rows);
     }

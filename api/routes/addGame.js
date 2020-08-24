@@ -73,7 +73,6 @@ router.post("/add-game", async function (req, res) {
       result(rows.insertId);
     });
   }).catch((error) => {
-    console.log("Game creation error caught");
     resultObject.error = error;
     resultObject.success = false;
   });

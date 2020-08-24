@@ -25,7 +25,6 @@ class CreatePlayerForm extends Component {
     fetch("/add-player", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
         if (result.outcome === true) {
           alert("player created");
         } else {

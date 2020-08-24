@@ -14,7 +14,6 @@ router.post("/add-player", async function (req, res) {
       function (error) {
         if (error) {
           rejection(error);
-          console.log(error);
         }
         result("success");
       }

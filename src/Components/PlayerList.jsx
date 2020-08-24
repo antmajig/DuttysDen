@@ -19,7 +19,6 @@ class PlayerList extends Component {
       .then((res) => res.json())
       .then((data) => {
         this.setState({ items: data, isLoaded: true });
-        console.log(this.state.items);
       });
   }
 
@@ -29,7 +28,6 @@ class PlayerList extends Component {
 
   render() {
     const { isLoaded, items } = this.state;
-    console.log(this.state.items);
     return (
       <div className="leaderboard">
         {isLoaded ? (

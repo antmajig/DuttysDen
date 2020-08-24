@@ -14,7 +14,6 @@ router.get("/leaderboard", async function (req, res, next) {
   let gamePromise = await new Promise((result, reject) => {
     connection.query(gamesInSeason, function (error, gameIds) {
       if (error) {
-        console.log("Error gettings games in season");
         reject(error);
       }
       const numberOfGames = gameIds.length;
@@ -32,7 +31,6 @@ router.get("/leaderboard", async function (req, res, next) {
   let resultPromise = await new Promise((result, reject) => {
     connection.query(resultsFromSeason, function (error, results) {
       if (error) {
-        console.log("Error gettings results in season");
         reject(error);
       }
       result(results);
@@ -71,7 +69,6 @@ router.get("/leaderboard", async function (req, res, next) {
   let playerPromise = await new Promise((res, rej) => {
     connection.query(playerQuery, function (error, players) {
       if (error) {
-        console.log("Error getting players");
         rej(error);
       }
       res(players);

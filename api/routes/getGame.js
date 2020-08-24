@@ -12,7 +12,6 @@ router.get("/games/:seasonID", function (req, res, next) {
 
   connection.query(getGamesQuery, seasonID, function (error, rows) {
     if (error) {
-      console.log(error);
     } else {
       res.send(rows);
     }
@@ -34,7 +33,6 @@ router.get("/game/:gameID", async function (req, res, next) {
   const gamePromise = await new Promise((result, rejection) => {
     connection.query(getGameQuery, gameID, function (error, rows) {
       if (error) {
-        console.log(error);
         rejection(error);
       } else {
         resultObject.success = true;
@@ -47,7 +45,6 @@ router.get("/game/:gameID", async function (req, res, next) {
   const resultsPromise = await new Promise((result, rejection) => {
     connection.query(getResultsQuery, gameID, function (error, rows) {
       if (error) {
-        console.log(error);
         rejection(error);
       } else {
         resultObject.success = true;
