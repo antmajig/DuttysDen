@@ -81,7 +81,7 @@ router.get("/leaderboard", async function (req, res, next) {
     let playerName = playerPromise.filter(
       (p) => leadEntry.PlayerID === p.PlayerID
     );
-    leadEntry.PlayerID = playerName[0].PlayerName;
+    leadEntry.PlayerName = playerName[0].PlayerName;
   });
 
   res.send(leaderboard.sort(comparePlayers));
