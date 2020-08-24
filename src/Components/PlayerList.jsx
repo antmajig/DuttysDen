@@ -3,6 +3,7 @@ import Table from "react-bootstrap/Table";
 import LoadingSpinner from "./LoadingSpinner";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
+import "../index.css";
 class PlayerList extends Component {
   constructor() {
     super();
@@ -46,7 +47,10 @@ class PlayerList extends Component {
                   {items.map((item) => (
                     <tr>
                       <td>
-                        <Link to={`/player/${item.PlayerID}`}>
+                        <Link
+                          className="linkText"
+                          to={`/player/${item.PlayerID}`}
+                        >
                           {item.PlayerName}
                         </Link>
                       </td>

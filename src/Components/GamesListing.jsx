@@ -4,7 +4,7 @@ import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
-
+import "../index.css";
 class GamesListing extends Component {
   constructor(props) {
     super(props);
@@ -58,7 +58,9 @@ class GamesListing extends Component {
                   {games.map((game) => (
                     <tr key={game.GameID}>
                       <td>
-                        <Link to={`/game/${game.GameID}`}>{game.GameName}</Link>
+                        <Link className="linkText" to={`/game/${game.GameID}`}>
+                          {game.GameName}
+                        </Link>
                       </td>
                       <td>{this.formatDate(game.Date)}</td>
                       <td>{game.GameType}</td>
