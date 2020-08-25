@@ -9,6 +9,7 @@ import ResultsInputForm from "./Components/ResultsInputForm.jsx";
 import Leaderboard from "./Components/Leaderboard.jsx";
 import GamesListing from "./Components/GamesListing.jsx";
 import GamePage from "./Components/GamePage.jsx";
+import HomePage from "./Components/HomePage.jsx";
 import PlayerPage from "./Components/PlayerPage.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -17,6 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <NavBar />
+      <Route path="/" exact component={HomePage} />
       <Route path="/admin/add-season" exact component={CreateNewSeason} />
       <Route path="/playerlist" exact component={PlayerList} />
       <Route path="/leaderboard" exact component={Leaderboard} />
