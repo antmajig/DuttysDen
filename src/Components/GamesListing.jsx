@@ -13,8 +13,9 @@ class GamesListing extends Component {
       games: [],
     };
   }
-  getGames() {
-    fetch("/games/5")
+
+  async getGames() {
+    await fetch("/games/5")
       .then((response) => {
         return response.json();
       })
@@ -24,6 +25,12 @@ class GamesListing extends Component {
           games: data,
         });
       });
+
+    let games = this.state.games;
+    games.sort(function (a, b) {
+      return new Date(b.Date) - new Date(a.Date);
+    });
+    this.setState({ games });
   }
 
   formatDate(dateString) {
