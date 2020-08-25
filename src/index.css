@@ -30,3 +30,20 @@ code {
 .linkText:hover {
   color: rgb(162, 182, 199);
 }
+
+.d-block {
+  display: block;
+  width: 50%;
+  height: 50%;
+  height: auto;
+  margin: auto;
+  max-width: 100%;
+  line-height: 1;
+}
+
+.carouselContainer {
+  display: flex;
+  width: 75%;
+  margin: auto;
+  padding: 30px;
+}
