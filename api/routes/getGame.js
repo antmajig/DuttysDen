@@ -2,26 +2,17 @@ let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
 let config = require("../config/config.js");
+const sqlFunctions = require("./sqlFunctions.js");
 
-router.get("/games/:seasonID", function (req, res, next) {
-  const connection = mysql.createConnection(config.databaseOptions);
-  connection.connect();
-
+router.get("/games/:seasonID", async function (req, res) {
   const seasonID = Number(req.params.seasonID);
   const getGamesQuery = "SELECT *  FROM Game WHERE SeasonID = ?";
 
-  connection.query(getGamesQuery, seasonID, function (error, rows) {
-    if (error) {
-    } else {
-      res.send(rows);
-    }
-  });
+  let games = await sqlFunctions.sqlQuery(getGamesQuery, seasonID);
+  res.send(games.rows);
 });
 
-router.get("/game/:gameID", async function (req, res, next) {
-  const connection = mysql.createConnection(config.databaseOptions);
-  connection.connect();
-
+router.get("/game/:gameID", async function (req, res) {
   const gameID = Number(req.params.gameID);
   const getGameQuery = "SELECT * FROM Game WHERE GameID = ?";
   const getResultsQuery = "SELECT * FROM Result WHERE GameID = ?";
@@ -29,31 +20,22 @@ router.get("/game/:gameID", async function (req, res, next) {
     success: false,
     gameData: [],
     resultData: [],
+    error: null,
   };
-  const gamePromise = await new Promise((result, rejection) => {
-    connection.query(getGameQuery, gameID, function (error, rows) {
-      if (error) {
-        rejection(error);
-      } else {
-        resultObject.success = true;
-        resultObject.gameData = rows;
-        result(resultObject);
-      }
-    });
-  });
 
-  const resultsPromise = await new Promise((result, rejection) => {
-    connection.query(getResultsQuery, gameID, function (error, rows) {
-      if (error) {
-        rejection(error);
-      } else {
-        resultObject.success = true;
-        resultObject.resultData = rows;
-        result(resultObject);
-      }
-    });
-  });
-
-  res.send(resultObject);
+  let game = await sqlFunctions.sqlQuery(getGameQuery, gameID);
+  if (game.error) {
+    resultObject.error = game.error;
+    res.json(resultObject);
+  }
+  let results = await sqlFunctions.sqlQuery(getResultsQuery, gameID);
+  if (results.error) {
+    resultObject.error = results.error;
+    res.json(resultObject);
+  }
+  resultObject.gameData = game.rows;
+  resultObject.resultData = results.rows;
+  resultObject.success = true;
+  res.json(resultObject);
 });
 module.exports = router;
