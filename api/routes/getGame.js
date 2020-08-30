@@ -1,7 +1,5 @@
 let express = require("express");
 let router = express.Router();
-let mysql = require("mysql");
-let config = require("../config/config.js");
 const sqlFunctions = require("./sqlFunctions.js");
 
 router.get("/games/:seasonID", async function (req, res) {
