@@ -4,15 +4,16 @@ let mysql = require("mysql");
 let config = require("../config/config.js");
 const { json } = require("express");
 
-router.get("/leaderboard", async function (req, res, next) {
+router.get("/leaderboard/:seasonID", async function (req, res, next) {
   const connection = mysql.createConnection(config.databaseOptions);
   connection.connect();
+  const seasonID = Number(req.params.seasonID);
 
-  const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = 5";
+  const gamesInSeason = "SELECT GameID FROM Game WHERE SeasonId = ?";
   let resultsFromSeason = "SELECT * FROM Result WHERE GameId IN (";
   const playerQuery = "SELECT * FROM Player";
   let gamePromise = await new Promise((result, reject) => {
-    connection.query(gamesInSeason, function (error, gameIds) {
+    connection.query(gamesInSeason, seasonID, function (error, gameIds) {
       if (error) {
         reject(error);
       }

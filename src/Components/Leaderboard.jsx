@@ -7,22 +7,37 @@ import { Link } from "react-router-dom";
 
 class Leaderboard extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       isLoaded: false,
       error: null,
       items: [],
+      seasons: null,
+      displayedSeason: null,
     };
   }
 
-  pullLeaderboardData() {
-    fetch("/leaderboard")
+  async pullLeaderboardData(SeasonID) {
+    this.setState({ displayedSeason: SeasonID });
+    const fetchStr = "/leaderboard/" + SeasonID;
+    await fetch(fetchStr)
       .then((res) => res.json())
       .then((data) => this.setState({ isLoaded: true, items: data }));
   }
 
-  componentDidMount() {
-    this.pullLeaderboardData();
+  async pullSeasons() {
+    await fetch("/season")
+      .then((res) => res.json())
+      .then((data) => this.setState({ isLoaded: true, seasons: data }));
+  }
+
+  async componentDidMount() {
+    //push with latest season
+    await this.pullSeasons();
+    const seasons = this.state.seasons;
+    const latestSeason = seasons[seasons.length - 1];
+    console.log(latestSeason);
+    this.pullLeaderboardData(latestSeason.SeasonID);
   }
 
   render() {
@@ -37,7 +52,7 @@ class Leaderboard extends Component {
                   <tr>
                     <th align="center" colSpan="4">
                       <h5 align="center" fontWeight="bold">
-                        Season 5
+                        Season {this.state.displayedSeason}
                       </h5>
                     </th>
                   </tr>
