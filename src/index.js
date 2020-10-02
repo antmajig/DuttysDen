@@ -11,6 +11,7 @@ import GamesListing from "./Components/GamesListing.jsx";
 import GamePage from "./Components/GamePage.jsx";
 import HomePage from "./Components/HomePage.jsx";
 import PlayerPage from "./Components/PlayerPage.jsx";
+import Schedule from "./Components/Schedule.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -20,6 +21,7 @@ ReactDOM.render(
       <NavBar />
       <Route path="/" exact component={HomePage} />
       <Route path="/admin/add-season" exact component={CreateNewSeason} />
+      <Route path="/schedule" exact component={Schedule} />
       <Route path="/playerlist" exact component={PlayerList} />
       <Route path="/leaderboard" exact component={Leaderboard} />
       <Route path="/admin/add-player" exact component={CreatePlayerForm} />
