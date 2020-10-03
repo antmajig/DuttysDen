@@ -32,7 +32,10 @@ router.get("/leaderboard/:seasonID", async function (req, res, next) {
     gameIDs.push(game.GameID);
   });
 
-  const results = await sqlFunctions.sqlQuery(resultsFromSeason, gameIDs);
+  const results = await sqlFunctions.sqlQueryMultiBind(
+    resultsFromSeason,
+    gameIDs
+  );
 
   results.rows.map((result) => {
     let pExists = leaderboard.filter((p) => result.PlayerID === p.PlayerID);
