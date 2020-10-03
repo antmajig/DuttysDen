@@ -7,7 +7,7 @@ import FadeIn from "react-fade-in";
 import "../index.css";
 class GamesListing extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.state = {
       loadedGames: false,
       games: [],
@@ -56,6 +56,7 @@ class GamesListing extends Component {
               <Table striped bordered hover size="sm" variant="dark">
                 <thead>
                   <tr>
+                    <th>Season</th>
                     <th>Game Name</th>
                     <th>Date</th>
                     <th>Game Type</th>
@@ -64,6 +65,7 @@ class GamesListing extends Component {
                 <tbody>
                   {games.map((game) => (
                     <tr key={game.GameID}>
+                      <td>{game.SeasonID}</td>
                       <td>
                         <Link className="linkText" to={`/game/${game.GameID}`}>
                           {game.GameName}
