@@ -49,6 +49,8 @@ code {
 }
 
 .dropdownContainer {
+  float: right;
+  margin-bottom: 5px;
   position: relative;
   z-index: 9999;
 }

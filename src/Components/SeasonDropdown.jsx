@@ -5,8 +5,8 @@ function SeasonDropdown(props) {
   return (
     <div className="dropdownContainer">
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic">
-          Button
+        <Dropdown.Toggle variant="dark" id="dropdown-basic">
+          Season
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
