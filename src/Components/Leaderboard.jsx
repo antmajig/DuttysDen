@@ -4,7 +4,7 @@ import "../leaderboard.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
-
+import SeasonDropdown from "./SeasonDropdown.jsx";
 class Leaderboard extends Component {
   constructor(props) {
     super();
@@ -15,6 +15,12 @@ class Leaderboard extends Component {
       seasons: null,
       displayedSeason: null,
     };
+    this.seasonSelected = this.seasonSelected.bind(this);
+  }
+
+  seasonSelected(seasonID) {
+    this.setState({ isLoaded: false });
+    this.pullLeaderboardData(Number(seasonID));
   }
 
   async pullLeaderboardData(SeasonID) {
@@ -36,7 +42,6 @@ class Leaderboard extends Component {
     await this.pullSeasons();
     const seasons = this.state.seasons;
     const latestSeason = seasons[seasons.length - 1];
-    console.log(latestSeason);
     this.pullLeaderboardData(latestSeason.SeasonID);
   }
 
@@ -47,6 +52,10 @@ class Leaderboard extends Component {
         {isLoaded ? (
           <FadeIn>
             <div>
+              <SeasonDropdown
+                seasons={this.state.seasons}
+                seasonSelected={this.seasonSelected}
+              />
               <Table striped bordered hover size="sm" variant="dark">
                 <thead>
                   <tr>

@@ -47,3 +47,8 @@ code {
   margin: auto;
   padding: 30px;
 }
+
+.dropdownContainer {
+  position: relative;
+  z-index: 9999;
+}

@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 class ResultRow extends Component {
   constructor(props) {
-    super(props);
+    super();
     this.username = "";
     this.cash = 0;
     this.bountyCash = 0;
