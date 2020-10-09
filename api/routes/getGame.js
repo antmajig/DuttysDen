@@ -10,6 +10,13 @@ router.get("/games/:seasonID", async function (req, res) {
   res.send(games.rows);
 });
 
+router.get("/games", async function (req, res) {
+  const getGamesQuery = "SELECT *  FROM Game";
+
+  let games = await sqlFunctions.sqlQuery(getGamesQuery);
+  res.send(games.rows);
+});
+
 router.get("/game/:gameID", async function (req, res) {
   const gameID = Number(req.params.gameID);
   const getGameQuery = "SELECT * FROM Game WHERE GameID = ?";

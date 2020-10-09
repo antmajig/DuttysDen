@@ -15,7 +15,7 @@ class GamesListing extends Component {
   }
 
   async getGames() {
-    await fetch("/games/5")
+    await fetch("/games")
       .then((response) => {
         return response.json();
       })
