@@ -48,7 +48,7 @@ class Leaderboard extends Component {
   render() {
     const { isLoaded, items } = this.state;
     return (
-      <div className="leaderboard">
+      <div className="container">
         {isLoaded ? (
           <FadeIn>
             <div>

@@ -78,7 +78,7 @@ class GamePage extends Component {
   render() {
     const { dataLoaded, data } = this.state;
     return (
-      <div className="leaderboard">
+      <div className="container">
         {dataLoaded ? (
           <FadeIn>
             <Table striped bordered hover size="sm" variant="dark">

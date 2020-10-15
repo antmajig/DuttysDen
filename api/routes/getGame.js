@@ -11,7 +11,7 @@ router.get("/games/:seasonID", async function (req, res) {
 });
 
 router.get("/games", async function (req, res) {
-  const getGamesQuery = "SELECT *  FROM Game";
+  const getGamesQuery = "SELECT * FROM Game";
 
   let games = await sqlFunctions.sqlQuery(getGamesQuery);
   res.send(games.rows);

@@ -49,7 +49,7 @@ class GamesListing extends Component {
   render() {
     const { loadedGames, games } = this.state;
     return (
-      <div className="leaderboard">
+      <div className="container">
         {loadedGames ? (
           <FadeIn>
             <div>

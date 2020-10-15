@@ -86,7 +86,7 @@ class PlayerPage extends Component {
     const isLoaded = this.state.dataLoaded;
     const playerData = this.state.data;
     return (
-      <div className="leaderboard">
+      <div className="container">
         {isLoaded ? (
           <FadeIn>
             <Table striped hover bordered size="sm" variant="dark">
