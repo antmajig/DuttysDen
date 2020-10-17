@@ -52,32 +52,30 @@ class GamesListing extends Component {
       <div className="container">
         {loadedGames ? (
           <FadeIn>
-            <div>
-              <Table striped bordered hover size="sm" variant="dark">
-                <thead>
-                  <tr>
-                    <th>Season</th>
-                    <th>Game Name</th>
-                    <th>Date</th>
-                    <th>Game Type</th>
+            <Table striped bordered hover size="sm" variant="dark">
+              <thead>
+                <tr>
+                  <th>Season</th>
+                  <th>Game Name</th>
+                  <th>Date</th>
+                  <th>Game Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                {games.map((game) => (
+                  <tr key={game.GameID}>
+                    <td>{game.SeasonID}</td>
+                    <td>
+                      <Link className="linkText" to={`/game/${game.GameID}`}>
+                        {game.GameName}
+                      </Link>
+                    </td>
+                    <td>{this.formatDate(game.Date)}</td>
+                    <td>{game.GameType}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  {games.map((game) => (
-                    <tr key={game.GameID}>
-                      <td>{game.SeasonID}</td>
-                      <td>
-                        <Link className="linkText" to={`/game/${game.GameID}`}>
-                          {game.GameName}
-                        </Link>
-                      </td>
-                      <td>{this.formatDate(game.Date)}</td>
-                      <td>{game.GameType}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </Table>
-            </div>
+                ))}
+              </tbody>
+            </Table>
           </FadeIn>
         ) : (
           <LoadingSpinner />

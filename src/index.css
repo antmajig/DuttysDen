@@ -10,12 +10,18 @@ body {
 html,
 body {
   height: 100%;
+  min-height: 100%;
+  background: #2b2f33;
   margin: 0;
 }
+
 .mainPage {
+  display: block;
   background: #2b2f33;
+  height: 100%;
   min-height: 100%;
 }
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -58,8 +64,10 @@ code {
 .container {
   box-sizing: border-box;
   display: block;
+  background: #2b2f33;
 
-  height: 100vh;
+  height: 100%;
+  min-height: 100%;
   margin-top: 1%;
   margin-left: 2%;
   margin-right: 2%;
