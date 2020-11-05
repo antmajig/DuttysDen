@@ -1,4 +1,4 @@
-# [DuttysDen.com](duttysden.com)
+# [DuttysDen.com](http://www.duttysden.com)
 
 ## What is Dutty's Den?
 
