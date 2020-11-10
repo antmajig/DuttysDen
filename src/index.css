@@ -77,3 +77,7 @@ code {
 #homePageImage {
   z-index: 10;
 }
+
+#homePageImage img {
+  opacity: 0.8;
+}
