@@ -11,7 +11,7 @@ class HomePage extends Component {
         </div>
         <div id="center">
           <div id="homePageImage">
-            <img src="fatseal1.jpg"></img>
+            <img src="duttysdenlogo.jpeg"></img>
           </div> 
         </div>
       </div>
