@@ -15,6 +15,10 @@
   color: whitesmoke;
 }
 
+.navBar img {
+  width: 40px;
+}
+
 .nav-link:hover {
-  background-color: #304461;
+  background-color: #1bbaee;
 }

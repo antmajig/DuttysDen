@@ -17,7 +17,7 @@ body {
   width: 100%;
   position: relative;
   background: #1c1c32;
-  overflow: hidden;
+  overflow: auto;
 }
 
 code {

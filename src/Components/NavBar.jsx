@@ -6,7 +6,9 @@ function NavBar() {
     <div className="navBar">
       <ul>
       <Link to="/">
-        <li>Dutty's Den</li>
+        <li style={{width : "7%"}}>
+          <img src="DDLogo_Notext.png"/>
+        </li>
       </Link>
       <Link to="/playerlist">
         <li className="nav-link">Players</li>
