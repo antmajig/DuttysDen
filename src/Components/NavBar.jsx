@@ -10,9 +10,6 @@ function NavBar() {
           <img src="DDLogo_Notext.png"/>
         </li>
       </Link>
-      <Link to="/playerlist">
-        <li className="nav-link">Players</li>
-      </Link>
       <Link to="/leaderboard">
         <li className="nav-link">Leaderboard</li>
       </Link>
