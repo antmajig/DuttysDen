@@ -14,7 +14,10 @@ body {
 
 .mainPage {
   height: 100%;
+  width: 100%;
+  position: relative;
   background: #1c1c32;
+  overflow: hidden;
 }
 
 code {

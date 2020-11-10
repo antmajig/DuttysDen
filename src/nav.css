@@ -1,9 +1,8 @@
-.navBar {
+.navBar ul {
   list-style-type: none;
   background-color: #464b52;
   margin: 0;
   padding: 0;
-  width: 100%;
   overflow: hidden;
 }
 
