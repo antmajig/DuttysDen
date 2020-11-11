@@ -32,11 +32,13 @@ router.get("/game/:gameID", async function (req, res) {
   if (game.error) {
     resultObject.error = game.error;
     res.json(resultObject);
+    return;
   }
   let results = await sqlFunctions.sqlQuery(getResultsQuery, gameID);
   if (results.error) {
     resultObject.error = results.error;
     res.json(resultObject);
+    return;
   }
   resultObject.gameData = game.rows;
   resultObject.resultData = results.rows;
