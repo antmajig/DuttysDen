@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Table from "react-bootstrap/Table";
 import LoadingSpinner from "./LoadingSpinner";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
@@ -32,7 +31,7 @@ class PlayerList extends Component {
       <div className="container">
         {isLoaded ? (
           <FadeIn>
-            <Table striped bordered hover size="sm" variant="dark">
+            <table className="dd-table">
               <thead>
                 <tr>
                   <th>Player Name</th>
@@ -56,7 +55,7 @@ class PlayerList extends Component {
                   </tr>
                 ))}
               </tbody>
-            </Table>
+            </table>
           </FadeIn>
         ) : (
           <LoadingSpinner />

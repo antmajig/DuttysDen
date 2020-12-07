@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Table from "react-bootstrap/Table";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
 
@@ -81,7 +80,7 @@ class GamePage extends Component {
       <div className="container">
         {dataLoaded ? (
           <FadeIn>
-            <Table striped bordered hover size="sm" variant="dark">
+            <table className="dd-table">
               <thead>
                 <tr>
                   <th align="center" colSpan="5">
@@ -111,7 +110,7 @@ class GamePage extends Component {
                   </tr>
                 ))}
               </tbody>
-            </Table>
+            </table>
           </FadeIn>
         ) : (
           <LoadingSpinner />

@@ -1,6 +1,5 @@
 import React from "react";
 import { Component } from "react";
-import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
@@ -52,7 +51,7 @@ class GamesListing extends Component {
       <div className="container">
         {loadedGames ? (
           <FadeIn>
-            <Table striped bordered hover size="sm" variant="dark">
+            <table className="dd-table">
               <thead>
                 <tr>
                   <th>Season</th>
@@ -75,7 +74,7 @@ class GamesListing extends Component {
                   </tr>
                 ))}
               </tbody>
-            </Table>
+            </table>
           </FadeIn>
         ) : (
           <LoadingSpinner />

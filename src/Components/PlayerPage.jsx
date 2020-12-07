@@ -1,7 +1,6 @@
 import React from "react";
 import { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
-import Table from "react-bootstrap/Table";
 import FadeIn from "react-fade-in";
 
 class PlayerPage extends Component {
@@ -89,7 +88,7 @@ class PlayerPage extends Component {
       <div className="container">
         {isLoaded ? (
           <FadeIn>
-            <Table striped hover bordered size="sm" variant="dark">
+            <table className="dd-table">
               <tbody>
                 <tr>
                   <th width="10%">Player Name</th>
@@ -112,7 +111,7 @@ class PlayerPage extends Component {
                   <td>{this.getBronzes(playerData)}</td>
                 </tr>
               </tbody>
-            </Table>
+            </table>
           </FadeIn>
         ) : (
           <LoadingSpinner />

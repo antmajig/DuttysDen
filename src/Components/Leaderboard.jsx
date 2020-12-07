@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Table } from "react-bootstrap";
 import "../leaderboard.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
@@ -56,7 +55,7 @@ class Leaderboard extends Component {
                 seasons={this.state.seasons}
                 seasonSelected={this.seasonSelected}
               />
-              <Table striped bordered hover size="sm" variant="dark">
+              <table className="dd-table">
                 <thead>
                   <tr>
                     <th align="center" colSpan="4">
@@ -91,12 +90,12 @@ class Leaderboard extends Component {
                     </tr>
                   ))}
                 </tbody>
-              </Table>
+              </table>
             </div>
           </FadeIn>
         ) : (
-          <LoadingSpinner />
-        )}
+            <LoadingSpinner />
+          )}
       </div>
     );
   }
