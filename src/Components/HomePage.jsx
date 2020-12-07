@@ -1,7 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import BackgroundParticles from "./BackgroundParticles.jsx"
-import "../index.css";
+import "../style/index.css";
 class HomePage extends Component {
   render() {
     return (

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
+import "../style/dd-table.css"
 
 class GamePage extends Component {
   constructor(props) {

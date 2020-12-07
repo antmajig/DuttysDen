@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
-import "../index.css";
+import "../style/index.css";
 class PlayerList extends Component {
   constructor() {
     super();

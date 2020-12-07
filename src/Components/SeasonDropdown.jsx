@@ -1,6 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import "../index.css";
+import "../style/index.css";
 function SeasonDropdown(props) {
   return (
     <div className="dropdownContainer">

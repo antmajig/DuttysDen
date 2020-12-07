@@ -3,7 +3,10 @@ import { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
-import "../index.css";
+
+import "../style/index.css";
+import "../style/dd-table.css"
+
 class GamesListing extends Component {
   constructor(props) {
     super();

@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./style/index.css";
 import CreateNewSeason from "./Components/CreateNewSeason.jsx";
 import NavBar from "./Components/NavBar.jsx";
 import PlayerList from "./Components/PlayerList.jsx";

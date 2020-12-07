@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../leaderboard.css";
+import "../style/dd-table.css"
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
