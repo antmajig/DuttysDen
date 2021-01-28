@@ -12,6 +12,7 @@ class PlayerPage extends Component {
     };
     this.getPlayerData = this.getPlayerData.bind(this);
   }
+
   async getPlayerData() {
     const {
       match: { params },
@@ -40,7 +41,6 @@ class PlayerPage extends Component {
 
       return 0;
     });
-
     return numberOfGolds;
   }
   getSilvers(playerData) {
@@ -109,6 +109,10 @@ class PlayerPage extends Component {
                 <tr>
                   <th>Bronzes</th>
                   <td>{this.getBronzes(playerData)}</td>
+                </tr>
+                <tr>
+                  <th>Season Wins</th>
+                  <td>{playerData.seasonWins.length}</td>
                 </tr>
               </tbody>
             </table>

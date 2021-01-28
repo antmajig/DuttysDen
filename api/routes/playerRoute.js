@@ -2,39 +2,29 @@ let express = require("express");
 let router = express.Router();
 let mysql = require("mysql");
 let config = require("../config/config.js");
+const sqlFunctions = require("./sqlFunctions.js");
+
 
 router.get("/player/:playerid", async function (req, res, next) {
-  let connection = mysql.createConnection(config.databaseOptions);
-  connection.connect();
   let resultObject = {
     playerData: [],
     resultData: [],
+    seasonWins: [],
   };
   const playerQuery = "SELECT * FROM Player WHERE PlayerID = ?";
   const playerID = Number(req.params.playerid);
 
-  let playerPromise = await new Promise((result, rejection) => {
-    connection.query(playerQuery, playerID, function (error, rows) {
-      if (error) {
-        rejection();
-      } else {
-        resultObject.playerData = rows;
-        result();
-      }
-    });
-  });
+  let player = await sqlFunctions.sqlQuery(playerQuery, playerID);
 
   const resultsQuery = "SELECT * FROM Result WHERE PlayerID = ?";
-  let resultsPromise = await new Promise((result, rejection) => {
-    connection.query(resultsQuery, playerID, function (error, rows) {
-      if (error) {
-        rejection();
-      } else {
-        resultObject.resultData = rows;
-        result();
-      }
-    });
-  });
+  let results = await sqlFunctions.sqlQuery(resultsQuery, playerID);
+
+  const seasonWinsQuery = "SELECT * FROM Season WHERE SeasonWinner = ?";
+  let seasonWins = await sqlFunctions.sqlQuery(seasonWinsQuery, playerID);
+
+  resultObject.playerData = player.rows;
+  resultObject.resultData = results.rows;
+  resultObject.seasonWins = seasonWins.rows;
 
   res.send(resultObject);
 });
