@@ -1,22 +1,28 @@
 import React from "react";
-import "../style/nav.css";
+import "../style/sidebar.css";
 import { Link } from "react-router-dom";
+
+import homeIcon from "../images/home.svg";
+import leaderboardIcon from "../images/bar-chart.svg";
+import gameIcon from "../images/cards.svg";
 function NavBar() {
   return (
-    <div className="navBar">
-      <ul>
+    <div className="sidebar">
       <Link to="/">
-        <li style={{width : "7%"}}>
-          <img src="DDLogo_Notext.png"/>
-        </li>
+        <div className="sidebar-item">
+          <img src={homeIcon} />
+        </div>
       </Link>
       <Link to="/leaderboard">
-        <li className="nav-link">Leaderboard</li>
+        <div className="sidebar-item">
+          <img src={leaderboardIcon}></img>
+        </div>
       </Link>
       <Link to="/games">
-        <li className="nav-link">Games</li>
+        <div className="sidebar-item">
+          <img src={gameIcon}></img>
+        </div>
       </Link>
-      </ul>
     </div>
   );
 }

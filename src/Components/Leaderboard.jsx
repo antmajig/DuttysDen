@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import "../style/dd-table.css"
+import "../style/table.css";
+import "../style/style.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
@@ -47,55 +48,51 @@ class Leaderboard extends Component {
   render() {
     const { isLoaded, items } = this.state;
     return (
-      <div className="container">
+      <div className="content">
         {isLoaded ? (
-          <FadeIn>
-            <div>
-              <SeasonDropdown
-                seasons={this.state.seasons}
-                seasonSelected={this.seasonSelected}
-              />
-              <table className="dd-table">
-                <thead>
-                  <tr>
-                    <th align="center" colSpan="4">
-                      <h5 align="center" fontWeight="bold">
-                        Season {this.state.displayedSeason}
-                      </h5>
-                    </th>
+          <div
+            className="content-item"
+            style={{ justifyContent: "flex-start", marginTop: "5%" }}
+          >
+            <SeasonDropdown
+              seasons={this.state.seasons}
+              seasonSelected={this.seasonSelected}
+            />
+            <table>
+              <thead>
+                <tr>
+                  <th align="center" colSpan="4">
+                    <h5 align="center" fontWeight="bold">
+                      Season {this.state.displayedSeason}
+                    </h5>
+                  </th>
+                </tr>
+              </thead>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Username</th>
+                  <th>Games Played</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+                {items.map((item, index) => (
+                  <tr key={item.PlayerID}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <a href={`/player/${item.PlayerID}`}>{item.PlayerName}</a>
+                    </td>
+                    <td>{item.GamesPlayed}</td>
+                    <td>{item.Points.toFixed(2)}</td>
                   </tr>
-                </thead>
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Username</th>
-                    <th>Games Played</th>
-                    <th>Points</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {items.map((item, index) => (
-                    <tr key={item.PlayerID}>
-                      <td>{index + 1}</td>
-                      <td>
-                        <Link
-                          className="linkText"
-                          to={`/player/${item.PlayerID}`}
-                        >
-                          {item.PlayerName}
-                        </Link>
-                      </td>
-                      <td>{item.GamesPlayed}</td>
-                      <td>{item.Points.toFixed(2)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </FadeIn>
+                ))}
+              </tbody>
+            </table>
+          </div>
         ) : (
-            <LoadingSpinner />
-          )}
+          <LoadingSpinner />
+        )}
       </div>
     );
   }

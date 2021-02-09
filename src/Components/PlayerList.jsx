@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import FadeIn from "react-fade-in";
 import { Link } from "react-router-dom";
-import "../style/index.css";
+import "../style/style.css";
 class PlayerList extends Component {
   constructor() {
     super();
@@ -28,7 +28,7 @@ class PlayerList extends Component {
   render() {
     const { isLoaded, items } = this.state;
     return (
-      <div className="container">
+      <div className="content">
         {isLoaded ? (
           <FadeIn>
             <table className="dd-table">

@@ -4,7 +4,6 @@ let mysql = require("mysql");
 let config = require("../config/config.js");
 const sqlFunctions = require("./sqlFunctions.js");
 
-
 router.get("/player/:playerid", async function (req, res, next) {
   let resultObject = {
     playerData: [],
@@ -14,13 +13,25 @@ router.get("/player/:playerid", async function (req, res, next) {
   const playerQuery = "SELECT * FROM Player WHERE PlayerID = ?";
   const playerID = Number(req.params.playerid);
 
-  let player = await sqlFunctions.sqlQuery(playerQuery, playerID);
+  let player = await sqlFunctions
+    .sqlQuery(playerQuery, playerID)
+    .catch((error) => {
+      next(error);
+    });
 
   const resultsQuery = "SELECT * FROM Result WHERE PlayerID = ?";
-  let results = await sqlFunctions.sqlQuery(resultsQuery, playerID);
+  let results = await sqlFunctions
+    .sqlQuery(resultsQuery, playerID)
+    .catch((error) => {
+      next(error);
+    });
 
   const seasonWinsQuery = "SELECT * FROM Season WHERE SeasonWinner = ?";
-  let seasonWins = await sqlFunctions.sqlQuery(seasonWinsQuery, playerID);
+  let seasonWins = await sqlFunctions
+    .sqlQuery(seasonWinsQuery, playerID)
+    .catch((error) => {
+      next(error);
+    });
 
   resultObject.playerData = player.rows;
   resultObject.resultData = results.rows;

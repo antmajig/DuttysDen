@@ -1,9 +1,9 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import "../style/index.css";
+import "../style/style.css";
 function SeasonDropdown(props) {
   return (
-    <div className="dropdownContainer">
+    <div style={{ marginBottom: "1%" }}>
       <Dropdown>
         <Dropdown.Toggle variant="dark" id="dropdown-basic">
           Season

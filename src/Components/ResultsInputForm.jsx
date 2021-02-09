@@ -3,8 +3,10 @@ import ResultRow from "./ResultRow";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
-import "../style/customForm.css";
 import LoadingSpinner from "./LoadingSpinner";
+
+import "../style/style.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 //on page load, pull all the usernames so that we can fill our rows
 //do form validation (no 2 usernames of the same value)
 //check to see if the sql query executed correctly.
@@ -156,83 +158,85 @@ class ResultInputForm extends Component {
   render() {
     const loaded = this.state.loaded;
     return (
-      <div>
+      <div className="content">
         {loaded ? (
-          <div className="custom-form">
-            <Form onSubmit={this.sendForm}>
-              <Form.Row>
-                <Form.Group as={Col}>
-                  <Form.Label size="sm">Game Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    name="gameName"
-                    onChange={this.handleChange}
-                    size="sm"
-                    required
-                  />
+          <div className="content-item">
+            <div className="custom-form">
+              <Form onSubmit={this.sendForm}>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Label size="sm">Game Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="gameName"
+                      onChange={this.handleChange}
+                      size="sm"
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col} xs="auto" size="sm">
+                    <Form.Label>Game Type</Form.Label>
+                    <Form.Control
+                      name="gameType"
+                      as="select"
+                      onChange={this.handleChange}
+                      size="sm"
+                    >
+                      <option value="Main">Main</option>
+                      <option value="Turbo">Turbo</option>
+                      <option value="PKO">PKO</option>
+                    </Form.Control>
+                  </Form.Group>
+                  <Form.Group as={Col} xs="auto" size="sm">
+                    <Form.Label size="sm">Points</Form.Label>
+                    <Form.Control
+                      defaultChecked="true"
+                      size="sm"
+                      name="points"
+                      type="checkbox"
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                </Form.Row>
+                <Form.Row>
+                  <Form.Group as={Col} xs="auto">
+                    <Form.Label size="sm">Season</Form.Label>
+                    <Form.Control
+                      size="sm"
+                      name="season"
+                      type="number"
+                      required
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label size="sm">Date</Form.Label>
+                    <Form.Control
+                      size="sm"
+                      name="gameDate"
+                      type="date"
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Label size="sm">Number of players</Form.Label>
+                    <Form.Control
+                      size="sm"
+                      type="number"
+                      name="numberOfPlayers"
+                      onChange={this.handleChange}
+                      required
+                    />
+                  </Form.Group>
+                </Form.Row>
+                <hr />
+                {this.getRows()}
+                <Form.Group>
+                  <Button type="submit">Submit Form</Button>
                 </Form.Group>
-                <Form.Group as={Col} xs="auto" size="sm">
-                  <Form.Label>Game Type</Form.Label>
-                  <Form.Control
-                    name="gameType"
-                    as="select"
-                    onChange={this.handleChange}
-                    size="sm"
-                  >
-                    <option value="Main">Main</option>
-                    <option value="Turbo">Turbo</option>
-                    <option value="PKO">PKO</option>
-                  </Form.Control>
-                </Form.Group>
-                <Form.Group as={Col} xs="auto" size="sm">
-                  <Form.Label size="sm">Points</Form.Label>
-                  <Form.Control
-                    defaultChecked="true"
-                    size="sm"
-                    name="points"
-                    type="checkbox"
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-              </Form.Row>
-              <Form.Row>
-                <Form.Group as={Col} xs="auto">
-                  <Form.Label size="sm">Season</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    name="season"
-                    type="number"
-                    required
-                    onChange={this.handleChange}
-                  />
-                </Form.Group>
-                <Form.Group as={Col}>
-                  <Form.Label size="sm">Date</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    name="gameDate"
-                    type="date"
-                    onChange={this.handleChange}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group as={Col}>
-                  <Form.Label size="sm">Number of players</Form.Label>
-                  <Form.Control
-                    size="sm"
-                    type="number"
-                    name="numberOfPlayers"
-                    onChange={this.handleChange}
-                    required
-                  />
-                </Form.Group>
-              </Form.Row>
-              <hr />
-              {this.getRows()}
-              <Form.Group>
-                <Button type="submit">Submit Form</Button>
-              </Form.Group>
-            </Form>
+              </Form>
+            </div>
           </div>
         ) : (
           <div>

@@ -3,6 +3,9 @@ import { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 import FadeIn from "react-fade-in";
 
+import "../style/style.css";
+import "../style/table.css";
+
 class PlayerPage extends Component {
   constructor(props) {
     super(props);
@@ -85,10 +88,13 @@ class PlayerPage extends Component {
     const isLoaded = this.state.dataLoaded;
     const playerData = this.state.data;
     return (
-      <div className="container">
+      <div className="content">
         {isLoaded ? (
-          <FadeIn>
-            <table className="dd-table">
+          <div
+            className="content-item"
+            style={{ justifyContent: "flex-start", marginTop: "5%" }}
+          >
+            <table>
               <tbody>
                 <tr>
                   <th width="10%">Player Name</th>
@@ -116,7 +122,7 @@ class PlayerPage extends Component {
                 </tr>
               </tbody>
             </table>
-          </FadeIn>
+          </div>
         ) : (
           <LoadingSpinner />
         )}

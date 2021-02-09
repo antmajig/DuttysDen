@@ -23,7 +23,12 @@ router.get("/leaderboard/:seasonID", async function (req, res, next) {
   const resultsFromSeason = "SELECT * FROM Result WHERE GameId IN (?)";
   let leaderboard = [];
 
-  const gameResults = await sqlFunctions.sqlQuery(gamesInSeason, seasonID);
+  const gameResults = await sqlFunctions
+    .sqlQuery(gamesInSeason, seasonID)
+    .catch((error) => {
+      next(error);
+    });
+
   if (!gameResults.success || gameResults.rows.length === 0) {
     return res.send(leaderboard);
   }
@@ -32,10 +37,11 @@ router.get("/leaderboard/:seasonID", async function (req, res, next) {
     gameIDs.push(game.GameID);
   });
 
-  const results = await sqlFunctions.sqlQueryMultiBind(
-    resultsFromSeason,
-    gameIDs
-  );
+  const results = await sqlFunctions
+    .sqlQueryMultiBind(resultsFromSeason, gameIDs)
+    .catch((error) => {
+      next(error);
+    });
 
   results.rows.map((result) => {
     let pExists = leaderboard.filter((p) => result.PlayerID === p.PlayerID);
@@ -54,7 +60,9 @@ router.get("/leaderboard/:seasonID", async function (req, res, next) {
   });
 
   const playerQuery = "SELECT * FROM Player";
-  const players = await sqlFunctions.sqlQuery(playerQuery);
+  const players = await sqlFunctions.sqlQuery(playerQuery).catch((error) => {
+    next(error);
+  });
 
   leaderboard.map((leadEntry) => {
     let playerName = players.rows.filter(

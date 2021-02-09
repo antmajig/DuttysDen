@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import "../style/index.css";
+import "../style/style.css";
 
 class CreatePlayerForm extends Component {
   constructor(props) {
@@ -45,38 +45,46 @@ class CreatePlayerForm extends Component {
 
   render() {
     return (
-      <div className="custom-form">
-        <Form>
-          <Form.Group>
-            <Form.Label>Username:</Form.Label>
-            <Form.Control
-              type="text"
-              name="username"
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Real Name:</Form.Label>
-            <Form.Control
-              type="text"
-              name="realname"
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Form.Label>Location:</Form.Label>
-            <Form.Control
-              type="text"
-              name="location"
-              onChange={this.handleInputChange}
-            />
-          </Form.Group>
-          <Form.Group>
-            <Button variant="primary" type="button" onClick={this.submitForm}>
-              Submit
-            </Button>
-          </Form.Group>
-        </Form>
+      <div className="content">
+        <div className="content-item">
+          <div className="custom-form">
+            <Form>
+              <Form.Group>
+                <Form.Label>Username:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="username"
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Real Name:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="realname"
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Form.Label>Location:</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="location"
+                  onChange={this.handleInputChange}
+                />
+              </Form.Group>
+              <Form.Group>
+                <Button
+                  variant="primary"
+                  type="button"
+                  onClick={this.submitForm}
+                >
+                  Submit
+                </Button>
+              </Form.Group>
+            </Form>
+          </div>
+        </div>
       </div>
     );
   }

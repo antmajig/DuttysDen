@@ -1,0 +1,28 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 4%;
+  max-height: 100vh;
+  background: rgba(28, 28, 38, 255);
+  justify-content: center;
+  border-right: solid 2px;
+  border-color: lightgray;
+}
+
+.sidebar-item * {
+  width: 75%;
+  height: 75%;
+  margin: auto;
+}
+
+.sidebar-item {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vw * 0.04);
+}
+
+.sidebar-item:hover {
+  background-color: rgba(28, 28, 62, 255);
+}

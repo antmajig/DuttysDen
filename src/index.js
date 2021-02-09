@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./style/index.css";
+import "./style/style.css";
 import CreateNewSeason from "./Components/CreateNewSeason.jsx";
 import NavBar from "./Components/NavBar.jsx";
 import PlayerList from "./Components/PlayerList.jsx";
@@ -13,6 +13,7 @@ import HomePage from "./Components/HomePage.jsx";
 import PlayerPage from "./Components/PlayerPage.jsx";
 import Schedule from "./Components/Schedule.jsx";
 import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(

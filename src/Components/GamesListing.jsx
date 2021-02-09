@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import FadeIn from "react-fade-in";
 
-import "../style/index.css";
-import "../style/dd-table.css"
+import "../style/style.css";
+import "../style/table.css";
 
 class GamesListing extends Component {
   constructor(props) {
@@ -51,10 +51,13 @@ class GamesListing extends Component {
   render() {
     const { loadedGames, games } = this.state;
     return (
-      <div className="container">
+      <div className="content">
         {loadedGames ? (
-          <FadeIn>
-            <table className="dd-table">
+          <div
+            className="content-item"
+            style={{ justifyContent: "flex-start", marginTop: "5%" }}
+          >
+            <table>
               <thead>
                 <tr>
                   <th>Season</th>
@@ -78,7 +81,7 @@ class GamesListing extends Component {
                 ))}
               </tbody>
             </table>
-          </FadeIn>
+          </div>
         ) : (
           <LoadingSpinner />
         )}
