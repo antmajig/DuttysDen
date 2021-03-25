@@ -1,7 +1,6 @@
 let express = require("express");
 let router = express.Router();
-let mysql = require("mysql");
-let config = require("../config/config.js");
+const sqlFunctions = require("./sqlFunctions.js");
 
 function specialCases(results) {
   const numberOfPlayers = results.length;
@@ -49,9 +48,6 @@ function calculatePoints(results) {
 }
 
 router.post("/add-game", async function (req, res) {
-  const connection = mysql.createConnection(config.databaseOptions);
-  connection.connect();
-
   let resultObject = {
     error: null,
     success: false,
@@ -65,19 +61,11 @@ router.post("/add-game", async function (req, res) {
     req.body.gameType,
     req.body.gameDate,
   ];
-  let gamePromise = await new Promise((result, rejection) => {
-    connection.query(insertGameQuery, gameValues, function (error, rows) {
-      if (error) {
-        rejection(error);
-      }
-      result(rows.insertId);
-    });
-  }).catch((error) => {
-    resultObject.error = error;
-    resultObject.success = false;
-  });
+  let gamePromise = await sqlFunctions.sqlQuery(insertGameQuery, gameValues);
 
-  if (resultObject.error) {
+  if (gamePromise.error) {
+    resultObject.success = false;
+    resultObject.error = gamePromise.error;
     return res.send(JSON.stringify(resultObject));
   }
 
@@ -90,7 +78,7 @@ router.post("/add-game", async function (req, res) {
   for (i = 0; i < req.body.rowData.length; i++) {
     valueItem = [
       req.body.rowData[i].PlayerID,
-      gamePromise,
+      gamePromise.rows.insertId,
       i,
       req.body.rowData[i].points,
       req.body.rowData[i].cash,
@@ -98,19 +86,15 @@ router.post("/add-game", async function (req, res) {
     ];
     resultValues.push(valueItem);
   }
+  let resultPromise = await sqlFunctions.sqlQueryMultiBind(
+    insertResultQuery,
+    resultValues
+  );
 
-  let resultPromise = await new Promise((result, rejection) => {
-    connection.query(insertResultQuery, [resultValues], function (error) {
-      if (error) {
-        rejection(error);
-      }
-      result(true);
-    });
-  }).catch((error) => {
-    resultObject.error = error;
+  if (resultPromise.error) {
     resultObject.success = false;
-  });
-
+    resultObject.error = resultPromise.error;
+  }
   if (!resultObject.error) {
     resultObject.success = true;
   }
