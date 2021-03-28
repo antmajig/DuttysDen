@@ -14,7 +14,7 @@ class HomePage extends Component {
           <BackgroundParticles />
         </div>
         <div className="content-item">
-          <img src={ddLogo}></img>
+          <img src={ddLogo} style={{ maxWidth: "90%", height: "auto" }}></img>
         </div>
       </div>
     );
