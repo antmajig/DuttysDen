@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import "../style/table.css";
 import "../style/style.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
-import FadeIn from "react-fade-in";
-import { Link } from "react-router-dom";
 import SeasonDropdown from "./SeasonDropdown.jsx";
 class Leaderboard extends Component {
   constructor(props) {
@@ -52,7 +50,10 @@ class Leaderboard extends Component {
         {isLoaded ? (
           <div
             className="content-item"
-            style={{ justifyContent: "flex-start", marginTop: "5%" }}
+            style={{
+              justifyContent: "flex-start",
+              marginTop: "5%",
+            }}
           >
             <SeasonDropdown
               seasons={this.state.seasons}
