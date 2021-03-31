@@ -21,7 +21,7 @@ class GamePage extends Component {
     const {
       match: { params },
     } = this.props;
-    const fetchString = "/game/" + params.gameid;
+    const fetchString = "/api/game/" + params.gameid;
     await fetch(fetchString)
       .then((response) => response.json())
       .then((data) => {
@@ -31,7 +31,7 @@ class GamePage extends Component {
         });
       });
 
-    await fetch("/playerlist")
+    await fetch("/api/playerlist")
       .then((response) => response.json())
       .then((data) => {
         this.setState({
