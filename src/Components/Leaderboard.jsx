@@ -23,14 +23,14 @@ class Leaderboard extends Component {
 
   async pullLeaderboardData(SeasonID) {
     this.setState({ displayedSeason: SeasonID });
-    const fetchStr = "/leaderboard/" + SeasonID;
+    const fetchStr = "/api/leaderboard/" + SeasonID;
     await fetch(fetchStr)
       .then((res) => res.json())
       .then((data) => this.setState({ isLoaded: true, items: data }));
   }
 
   async pullSeasons() {
-    await fetch("/season")
+    await fetch("/api/season")
       .then((res) => res.json())
       .then((data) => this.setState({ isLoaded: true, seasons: data }));
   }

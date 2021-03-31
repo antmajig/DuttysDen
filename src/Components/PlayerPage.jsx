@@ -20,7 +20,7 @@ class PlayerPage extends Component {
     const {
       match: { params },
     } = this.props;
-    const fetchString = "/player/" + params.playerid;
+    const fetchString = "/api/player/" + params.playerid;
     await fetch(fetchString)
       .then((response) => response.json())
       .then((data) => {

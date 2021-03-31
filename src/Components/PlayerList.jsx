@@ -14,7 +14,7 @@ class PlayerList extends Component {
   }
 
   getSQLResults() {
-    fetch("/playerlist")
+    fetch("/api/playerlist")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ items: data, isLoaded: true });

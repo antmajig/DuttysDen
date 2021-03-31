@@ -22,7 +22,7 @@ class CreatePlayerForm extends Component {
       body: JSON.stringify(this.state),
     };
 
-    fetch("/add-player", requestOptions)
+    fetch("/api/add-player", requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.outcome === true) {

@@ -26,14 +26,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", addPlayerRouter);
-app.use("/", gameRouter);
-app.use("/", indexRouter);
+app.use("/api", addPlayerRouter);
+app.use("/api", gameRouter);
+app.use("/api", indexRouter);
 app.use("/users", usersRouter);
-app.use("/", playerListRouter);
-app.use("/", leaderBoardRouter);
-app.use("/", gamesRouter);
-app.use("/", playerRouter);
+app.use("/api", playerListRouter);
+app.use("/api", leaderBoardRouter);
+app.use("/api", gamesRouter);
+app.use("/api", playerRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

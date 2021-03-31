@@ -130,7 +130,7 @@ class ResultInputForm extends Component {
       body: JSON.stringify(this.state),
     };
 
-    let response = await fetch("/add-game", requestOptions);
+    let response = await fetch("/api/add-game", requestOptions);
     let jsonRes = await response.json();
 
     if (!jsonRes.success) {
@@ -142,13 +142,13 @@ class ResultInputForm extends Component {
   }
 
   componentDidMount() {
-    fetch("/playerlist")
+    fetch("/api/playerlist")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ players: data, loaded: true });
       });
 
-    fetch("/season")
+    fetch("/api/season")
       .then((res) => res.json())
       .then((data) => {
         this.setState({ seasons: data, loaded: true });
