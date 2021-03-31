@@ -10,17 +10,17 @@ function NavBar() {
     <div className="sidebar">
       <Link to="/">
         <div className="sidebar-item">
-          <img src={homeIcon} />
+          <img alt={"Home Page Link"} src={homeIcon} />
         </div>
       </Link>
       <Link to="/leaderboard">
         <div className="sidebar-item">
-          <img src={leaderboardIcon}></img>
+          <img alt={"Leaderboard Icon"} src={leaderboardIcon}></img>
         </div>
       </Link>
       <Link to="/games">
         <div className="sidebar-item">
-          <img src={gameIcon}></img>
+          <img alt={"Games Page Link"} src={gameIcon}></img>
         </div>
       </Link>
     </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
-import FadeIn from "react-fade-in";
 
 import "../style/style.css";
 import "../style/table.css";

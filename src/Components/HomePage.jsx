@@ -14,7 +14,11 @@ class HomePage extends Component {
           <BackgroundParticles />
         </div>
         <div className="content-item">
-          <img src={ddLogo} style={{ maxWidth: "90%", height: "auto" }}></img>
+          <img
+            alt={"Dutty's Den Logo"}
+            src={ddLogo}
+            style={{ maxWidth: "90%", height: "auto" }}
+          ></img>
         </div>
       </div>
     );

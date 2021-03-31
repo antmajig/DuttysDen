@@ -1,7 +1,6 @@
 import React from "react";
 import { Component } from "react";
 import LoadingSpinner from "./LoadingSpinner";
-import FadeIn from "react-fade-in";
 
 import "../style/style.css";
 import "../style/table.css";
