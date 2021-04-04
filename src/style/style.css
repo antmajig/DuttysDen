@@ -11,6 +11,8 @@
   flex-grow: 999;
   align-items: center;
   overflow: auto;
+  width: 100%;
+  min-height: 100vh;
 }
 
 .content-item {
@@ -19,7 +21,6 @@
   align-items: center;
   justify-content: space-evenly;
   width: 100%;
-  min-height: 100vh;
 }
 
 .background-particles {

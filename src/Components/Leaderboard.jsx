@@ -49,50 +49,54 @@ class Leaderboard extends Component {
     return (
       <div className="content">
         {isLoaded ? (
-          <div
-            className="content-item"
-            style={{
-              justifyContent: "flex-start",
-              marginTop: "5%",
-            }}
-          >
-            <SeasonDropdown
-              seasons={this.state.seasons}
-              seasonSelected={this.seasonSelected}
-            />
-            <table>
-              <thead>
-                <tr>
-                  <th align="center" colSpan="4">
-                    <h5 align="center" fontWeight="bold">
-                      Season {this.state.displayedSeason}
-                    </h5>
-                  </th>
-                </tr>
-              </thead>
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Username</th>
-                  <th>Games Played</th>
-                  <th>Points</th>
-                </tr>
-              </thead>
-              <tbody>
-                {items.map((item, index) => (
-                  <tr key={item.PlayerID}>
-                    <td>{index + 1}</td>
-                    <td>
-                      <a href={`/player/${item.PlayerID}`}>{item.PlayerName}</a>
-                    </td>
-                    <td>{item.GamesPlayed}</td>
-                    <td>{item.Points.toFixed(2)}</td>
+          <>
+            <div
+              className="content-item"
+              style={{
+                justifyContent: "flex-start",
+                marginTop: "5%",
+              }}
+            >
+              <SeasonDropdown
+                seasons={this.state.seasons}
+                seasonSelected={this.seasonSelected}
+              />
+              <table>
+                <thead>
+                  <tr>
+                    <th align="center" colSpan="4">
+                      <h5 align="center" fontWeight="bold">
+                        Season {this.state.displayedSeason}
+                      </h5>
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-            <PlayerSeasonChart season={7} />
-          </div>
+                </thead>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Username</th>
+                    <th>Games Played</th>
+                    <th>Points</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {items.map((item, index) => (
+                    <tr key={item.PlayerID}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <a href={`/player/${item.PlayerID}`}>
+                          {item.PlayerName}
+                        </a>
+                      </td>
+                      <td>{item.GamesPlayed}</td>
+                      <td>{item.Points.toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <PlayerSeasonChart season={this.state.displayedSeason} />
+          </>
         ) : (
           <LoadingSpinner />
         )}

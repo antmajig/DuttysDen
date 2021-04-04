@@ -33,12 +33,16 @@ class PlayerSeasonChart extends Component {
   render() {
     const { isLoaded, seasonData } = this.state;
     return (
-      <>
+      <div className="content-item">
         {isLoaded ? (
           <Chart
             chartType="LineChart"
-            width={1000}
-            height={500}
+            className="content-item"
+            style={{
+              minWidth: "75%",
+              minHeight: "60vh",
+              paddingBlock: "1%",
+            }}
             loader={<div>Loading Chart</div>}
             data={seasonData.chartData}
             options={{
@@ -53,11 +57,9 @@ class PlayerSeasonChart extends Component {
             legendToggle
           />
         ) : (
-          <div>
-            <h1>not loaded</h1>
-          </div>
+          <div />
         )}
-      </>
+      </div>
     );
   }
 }

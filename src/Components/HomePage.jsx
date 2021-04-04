@@ -13,7 +13,7 @@ class HomePage extends Component {
         <div className="background-particles">
           <BackgroundParticles />
         </div>
-        <div className="content-item">
+        <div className="content-item" style={{ minHeight: "100vh" }}>
           <img
             alt={"Dutty's Den Logo"}
             src={ddLogo}
