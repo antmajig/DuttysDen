@@ -64,7 +64,7 @@ class Leaderboard extends Component {
               <table>
                 <thead>
                   <tr>
-                    <th align="center" colSpan="4">
+                    <th align="center" colSpan="5">
                       <h5 align="center" fontWeight="bold">
                         Season {this.state.displayedSeason}
                       </h5>
@@ -76,6 +76,7 @@ class Leaderboard extends Component {
                     <th>Rank</th>
                     <th>Username</th>
                     <th>Games Played</th>
+                    <th>Point Average</th>
                     <th>Points</th>
                   </tr>
                 </thead>
@@ -89,6 +90,7 @@ class Leaderboard extends Component {
                         </a>
                       </td>
                       <td>{item.GamesPlayed}</td>
+                      <td>{(item.Points / item.GamesPlayed).toFixed(2)}</td>
                       <td>{item.Points.toFixed(2)}</td>
                     </tr>
                   ))}
