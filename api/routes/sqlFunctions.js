@@ -23,9 +23,10 @@ async function sqlQuery(query, bindValues) {
   }).catch((error) => {
     resultObject.error = error;
     resultObject.success = false;
+    connection.end();
     throw new Error(error);
   });
-
+  connection.end();
   return resultObject;
 }
 
@@ -51,8 +52,11 @@ async function sqlQueryMultiBind(query, bindValues) {
   }).catch((error) => {
     resultObject.error = error;
     resultObject.success = false;
+    connection.end();
     throw new Error(error);
   });
+
+  connection.end();
   return resultObject;
 }
 

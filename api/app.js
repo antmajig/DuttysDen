@@ -13,6 +13,8 @@ var playerListRouter = require("./routes/playerListRoute");
 var leaderBoardRouter = require("./routes/leaderBoardRoute");
 var gamesRouter = require("./routes/getGame");
 var playerRouter = require("./routes/playerRoute");
+let resultsRouter = require("./routes/results");
+let chartDataRouter = require("./routes/chartData");
 var app = express();
 
 // view engine setup
@@ -34,6 +36,8 @@ app.use("/api", playerListRouter);
 app.use("/api", leaderBoardRouter);
 app.use("/api", gamesRouter);
 app.use("/api", playerRouter);
+app.use("/api", resultsRouter);
+app.use("/api", chartDataRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

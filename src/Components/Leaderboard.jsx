@@ -3,6 +3,7 @@ import "../style/table.css";
 import "../style/style.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import SeasonDropdown from "./SeasonDropdown.jsx";
+import PlayerSeasonChart from "./PlayerSeasonChart";
 class Leaderboard extends Component {
   constructor(props) {
     super();
@@ -90,6 +91,7 @@ class Leaderboard extends Component {
                 ))}
               </tbody>
             </table>
+            <PlayerSeasonChart season={7} />
           </div>
         ) : (
           <LoadingSpinner />
