@@ -38,7 +38,7 @@ router.get("/leaderboard/:seasonID", async function (req, res, next) {
   });
 
   const results = await sqlFunctions
-    .sqlQueryMultiBind(resultsFromSeason, gameIDs)
+    .sqlQuery(resultsFromSeason, [gameIDs])
     .catch((error) => {
       next(error);
     });

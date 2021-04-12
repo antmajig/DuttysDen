@@ -86,10 +86,9 @@ router.post("/add-game", async function (req, res) {
     ];
     resultValues.push(valueItem);
   }
-  let resultPromise = await sqlFunctions.sqlQueryMultiBind(
-    insertResultQuery,
-    resultValues
-  );
+  let resultPromise = await sqlFunctions.sqlQuery(insertResultQuery, [
+    resultValues,
+  ]);
 
   if (resultPromise.error) {
     resultObject.success = false;
