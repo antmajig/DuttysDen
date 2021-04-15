@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import { Link } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner.jsx";
+import SeasonDropdown from "./SeasonDropdown.jsx";
 
 import "../style/style.css";
 import "../style/table.css";
@@ -12,11 +13,20 @@ class GamesListing extends Component {
     this.state = {
       loadedGames: false,
       games: [],
+      seasons: [],
+      seasonSelected: 0,
     };
+    this.seasonSelected = this.seasonSelected.bind(this);
   }
 
-  async getGames() {
-    await fetch("/api/games")
+  seasonSelected(seasonID){
+    this.setState({loadedGames: false});
+    this.getGames(Number(seasonID));
+  }
+
+  async getGames(seasonID) {
+    this.setState({seasonSelected: seasonID})
+    await fetch("/api/games/season/" + seasonID)
       .then((response) => {
         return response.json();
       })
@@ -44,9 +54,18 @@ class GamesListing extends Component {
     return returnDate;
   }
 
-  componentDidMount() {
-    this.getGames();
+ async pullSeasons() {
+    await fetch("/api/season")
+      .then((res) => res.json())
+      .then((data) => this.setState({seasons: data }));
   }
+
+  async componentDidMount() {
+    await this.pullSeasons();
+    const latestSeason = this.state.seasons[this.state.seasons.length - 1]
+    await this.getGames(latestSeason.SeasonID);
+  }
+
   render() {
     const { loadedGames, games } = this.state;
     return (
@@ -56,6 +75,10 @@ class GamesListing extends Component {
             className="content-item"
             style={{ justifyContent: "flex-start", marginTop: "5%" }}
           >
+            <SeasonDropdown
+              seasons={this.state.seasons}
+              seasonSelected={this.seasonSelected}
+            />
             <table>
               <thead>
                 <tr>

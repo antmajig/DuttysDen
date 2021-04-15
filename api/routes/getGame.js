@@ -23,6 +23,15 @@ router.get("/games", async function (req, res) {
   res.send(games.rows);
 });
 
+router.get("/games/season/:seasonId", async function(req, res, next){
+  const seasonId = Number(req.params.seasonId);
+  const getGamesQuery = "SELECT * FROM Game WHERE SeasonID = ?"
+  let games = await sqlFunctions.sqlQuery(getGamesQuery, seasonId).catch((error) => {
+    next(error);
+  });
+  res.send(games.rows);
+});
+
 router.get("/game/:gameID", async function (req, res, next) {
   const gameID = Number(req.params.gameID);
   const getGameQuery = "SELECT * FROM Game WHERE GameID = ?";
