@@ -4,6 +4,7 @@ import "../style/style.css";
 import LoadingSpinner from "./LoadingSpinner.jsx";
 import SeasonDropdown from "./SeasonDropdown.jsx";
 import PlayerSeasonChart from "./PlayerSeasonChart";
+
 class Leaderboard extends Component {
   constructor(props) {
     super();
@@ -33,7 +34,7 @@ class Leaderboard extends Component {
   async pullSeasons() {
     await fetch("/api/season")
       .then((res) => res.json())
-      .then((data) => this.setState({ isLoaded: true, seasons: data }));
+      .then((data) => this.setState({ seasons: data }));
   }
 
   async componentDidMount() {
@@ -41,7 +42,7 @@ class Leaderboard extends Component {
     await this.pullSeasons();
     const seasons = this.state.seasons;
     const latestSeason = seasons[seasons.length - 1];
-    this.pullLeaderboardData(latestSeason.SeasonID);
+    await this.pullLeaderboardData(latestSeason.SeasonID);
   }
 
   render() {
