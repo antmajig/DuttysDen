@@ -75,10 +75,16 @@ class GamesListing extends Component {
             className="content-item"
             style={{ justifyContent: "flex-start", marginTop: "5%" }}
           >
-            <SeasonDropdown
-              seasons={this.state.seasons}
-              seasonSelected={this.seasonSelected}
-            />
+            <div style={{
+              display: "flex",
+              justifyContent: "flex-end",
+              width:"75%"
+            }}>
+              <SeasonDropdown
+                seasons={this.state.seasons}
+                seasonSelected={this.seasonSelected}
+              />
+            </div>
             <table>
               <thead>
                 <tr>
