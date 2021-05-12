@@ -26,12 +26,12 @@ function calculatePoints(results) {
   const numberOfPlayers = results.length;
   const p = Math.floor(0.34 * numberOfPlayers);
   let divideConst = 0;
-  for (i = 0; i < p; i++) {
+  for (let i = 0; i < p; i++) {
     divideConst += Math.sqrt(numberOfPlayers) / Math.sqrt(i + 1);
   }
 
   let totalPoints = 0;
-  for (i = 0; i < p; i++) {
+  for (let i = 0; i < p; i++) {
     results[i].points =
       (numberOfPlayers * (Math.sqrt(numberOfPlayers) / Math.sqrt(i + 1))) /
       divideConst;
@@ -39,7 +39,7 @@ function calculatePoints(results) {
     totalPoints += results[i].points;
   }
 
-  for (i = 0; i < p; i++) {
+  for (let i = 0; i < p; i++) {
     results[i].points = (
       numberOfPlayers *
       (results[i].points / totalPoints)
@@ -74,9 +74,9 @@ router.post("/add-game", async function (req, res) {
   }
   const insertResultQuery =
     "INSERT INTO Result (PlayerID, GameID, Position, Points,Cash, BountyCash) VALUES ?";
-  resultValues = [];
-  for (i = 0; i < req.body.rowData.length; i++) {
-    valueItem = [
+  let resultValues = [];
+  for (let i = 0; i < req.body.rowData.length; i++) {
+    let valueItem = [
       req.body.rowData[i].PlayerID,
       gamePromise.rows.insertId,
       i,
