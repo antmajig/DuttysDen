@@ -106,6 +106,7 @@ class ResultRow extends Component {
                 size="sm"
                 type="number"
                 step="0.01"
+                defaultValue="0"
                 required
                 onChange={this.cashChange}
               />
