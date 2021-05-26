@@ -37,7 +37,7 @@ class PlayerPage extends Component {
   getGolds(playerData) {
     let numberOfGolds = 0;
     playerData.resultData.map((result) => {
-      if (result.Position === 1) {
+      if (result.Position === 0) {
         numberOfGolds++;
       }
 
@@ -48,7 +48,7 @@ class PlayerPage extends Component {
   getSilvers(playerData) {
     let numberOfSilvers = 0;
     playerData.resultData.map((result) => {
-      if (result.Position === 2) {
+      if (result.Position === 1) {
         numberOfSilvers++;
       }
       return 0;
@@ -59,7 +59,7 @@ class PlayerPage extends Component {
   getBronzes(playerData) {
     let numberOfBronzes = 0;
     playerData.resultData.map((result) => {
-      if (result.Position === 3) {
+      if (result.Position === 2) {
         numberOfBronzes++;
       }
       return 0;
